@@ -1,0 +1,66 @@
+[
+    {
+        "biome": "desert",
+        "zone": "pyramid",
+        "position": "front",
+        "img": "/assets/images/backgrounds/desert-pyramid-front.gif",
+        "characters": [
+            {
+                "name": "smiling guy",
+                "idle": "/assets/images/sprites/smiling-guy-idle.png",
+                "x": 100,
+                "y": 30,
+                "onClick": {
+                    "eventType": "dialogue",
+                    "characters": ["protagonist", "smiling guy"],
+                    "dialogueBlock": [
+                        {
+                            "characterSpeaking": 0,
+                            "lines": [
+                                "Hey you! What ya doin' out there, smoking weeds or what ?"
+                            ]
+                        },
+                        {
+                            "characterSpeaking": 1,
+                            "lines": [
+                                "Nah man, what the frick, ain't no smoker here. You crazy or what ?"
+                            ]
+                        },
+                        {
+                            "characterSpeaking": 0,
+                            "lines": [
+                                "Yeah man, sorry about that... I'm just a little crazy sometimes you know ?",
+                                "Words comes out of my mouth like if it was a waterfall."
+                            ]
+                        },
+                        {
+                            "characterSpeaking": 1,
+                            "lines": [
+                                "Okay man, I excuse you, no problem.",
+                                "Sometimes things like that happen you know ? You say something you don't mean, but it's already too late to go back..."
+                            ]
+                        },
+                        {
+                            "eventType": "choice",
+                            "choices": [
+                                {
+                                    "text": "Kill smiling guy",
+                                    "consequences": [
+                                        {
+                                            "eventType": "fight",
+                                            "oponents": ["smiling guy"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "text": "Leave the conversation",
+                                    "consequences": ["quit dialogue"]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

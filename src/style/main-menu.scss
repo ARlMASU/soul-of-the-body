@@ -1,0 +1,25 @@
+.app {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        scale: 1.25;
+        transform: translate(-1%, 0);
+    }
+    .logo {
+        z-index: 100;
+    }
+    .buttons {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        text-align: center;
+        gap: 2px;
+    }
+}

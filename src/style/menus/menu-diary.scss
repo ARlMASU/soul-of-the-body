@@ -1,0 +1,98 @@
+.diary-menu {
+    position: relative;
+
+    &__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        font-family: "pixer";
+        font-size: 8px;
+        p,
+        li {
+            color: var(--color-0);
+        }
+        &__tasks {
+            width: 100%;
+            height: 100%;
+            padding: 24px 0px 24px 8px;
+
+            &__task {
+                display: flex;
+                justify-content: start;
+
+                input[type="checkbox"] {
+                    display: none;
+
+                    &:checked + label::before {
+                        background: url("../../../static/assets/images/menus/diary/checkbox-checked.png")
+                            no-repeat center / cover;
+                    }
+
+                    + label {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        align-items: center;
+                        cursor: text;
+
+                        p {
+                            font-family: "pixer";
+                            // text-wrap: nowrap;
+                            user-select: text;
+                            padding-bottom: 0;
+                            font-size: 8px;
+
+                            &::selection {
+                                color: var(--color-6);
+                                background: var(--color-0);
+                            }
+                        }
+
+                        &::before {
+                            content: "";
+                            width: 7px;
+                            height: 7px;
+                            display: inline-block;
+                            margin: 2px 2px 0 0;
+                            background: url("../../../static/assets/images/menus/diary/checkbox-unchecked.png")
+                                no-repeat center / cover;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__findings {
+            width: 100%;
+            height: 100%;
+            padding: 24px 4px 24px 2px;
+
+            ul {
+                list-style: square inside
+                    url("../../../static/assets/images/menus/diary/bullet-point.png");
+
+                li {
+                    user-select: text;
+
+                    &::selection {
+                        color: var(--color-6);
+                        background: var(--color-0);
+                    }
+                }
+            }
+        }
+    }
+
+    &__close-button {
+        position: absolute;
+        top: 1px;
+        right: 4px;
+        width: 13px;
+        height: 12px;
+        cursor: pointer;
+    }
+}
