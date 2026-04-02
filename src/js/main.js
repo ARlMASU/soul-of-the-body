@@ -37,8 +37,11 @@ const container = document.querySelector(".container"),
     choicesWrapper = document.querySelector(".choices-wrapper");
 
 //===============//
-//  DUMMY DATAS  //
+//  IMPORT DATA  //
 //===============//
+
+import data from "../data/data.json";
+
 const dummyInv = [
     {
         name: "Owly's postcard",
