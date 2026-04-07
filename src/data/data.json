@@ -257,5 +257,36 @@
                 }
             ]
         }
-    ]
+    ],
+    "default":{
+        "inventory":[
+            {
+                "name": "Owly's postcard",
+                "img": "owly-s-postcard.png"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            },
+            {
+                "name": "Empty"
+            }
+        ],
+        "tasks": [],
+        "findings": []
+    }
 }

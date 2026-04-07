@@ -1,305 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style/style.scss" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="app">
-                <div class="scene">
-                    <img class="scene__bg" />
-                    <div class="scene__items"></div>
-                    <div class="scene__characters"></div>
-                    <div class="scene__move-arrows"></div>
-                </div>
-                <div class="dialogue dialogue--left">
-                    <div class="dialogue__backdrop"></div>
-                    <img class="dialogue__character-img" />
-                    <div class="dialogue__content">
-                        <img
-                            src="../static/assets/images/menus/dialogue/dialogue-box.png"
-                            alt=""
-                            class="dialogue__content__box"
-                        />
-                        <p class="dialogue__content__name"></p>
-                        <p class="dialogue__content__text-content"></p>
-                        <img
-                            src="../static/assets/images/menus/dialogue/dialogue-next-arrow.gif"
-                            alt=""
-                            class="dialogue__content__next-arrow"
-                        />
-                    </div>
-                </div>
-                <div class="choices-wrapper"></div>
-
-                <div class="menus">
-                    <button class="move-button" title="Move">
-                        <img
-                            src="../static/assets/images/icons/move-button.png"
-                            alt=""
-                        />
-                    </button>
-                    <nav class="menu">
-                        <img
-                            class="menu__bg"
-                            src="../static/assets/images/icons/menu/menu.png"
-                            alt=""
-                        />
-                        <button class="menu__toggle-button">
-                            <img
-                                src="../static/assets/images/icons/menu/close-button.png"
-                                alt=""
-                                title="Close"
-                            />
-                        </button>
-                        <div class="menu__buttons-wrapper">
-                            <button
-                                class="menu__button diary-button"
-                                title="Diary"
-                            >
-                                <img
-                                    src="../static/assets/images/icons/menu/diary-button.png"
-                                    alt=""
-                                />
-                            </button>
-                            <button
-                                class="menu__button inv-button"
-                                title="Inventory"
-                            >
-                                <img
-                                    src="../static/assets/images/icons/menu/inv-button.png"
-                                    alt=""
-                                />
-                            </button>
-                            <button class="menu__button map-button" title="Map">
-                                <img
-                                    src="../static/assets/images/icons/menu/map-button.png"
-                                    alt=""
-                                />
-                            </button>
-                            <button
-                                class="menu__button options-button"
-                                title="Options"
-                            >
-                                <img
-                                    src="../static/assets/images/icons/menu/options-button.png"
-                                    alt=""
-                                />
-                            </button>
-                        </div>
-                    </nav>
-                    <div class="alert-message">
-                        <img
-                            src="../static/assets/images/menus/alert-message/alert-message-bg.png"
-                            alt="Black rectangle with white border"
-                        />
-                        <p>Alert</p>
-                    </div>
-                </div>
-                <div class="modal">
-                    <div class="modal__backdrop"></div>
-                    <div class="modal__content-container">
-                        <div class="modal__content-container__menu diary-menu">
-                            <img
-                                src="../static/assets/images/menus/diary/diary.png"
-                                alt="A diary"
-                            />
-                            <div class="diary-menu__content">
-                                <div class="diary-menu__content__tasks"></div>
-                                <div class="diary-menu__content__findings">
-                                    <ul></ul>
-                                </div>
-                            </div>
-                            <button
-                                class="menu-close-button diary-menu__close-button"
-                                title="Close"
-                            ></button>
-                        </div>
-                        <div class="modal__content-container__menu inv-menu">
-                            <img
-                                class="options-menu__bg"
-                                src="../static/assets/images/menus/bg.png"
-                                alt="Options menu's background"
-                            />
-                            <button
-                                class="menu-close-button options-menu__close-button"
-                                title="Close"
-                            >
-                                <img
-                                    src="../static/assets/images/menus/close-button.png"
-                                    alt="Close button"
-                                />
-                            </button>
-                            <div class="inv-menu__content">
-                                <h1>Inventory</h1>
-                                <div class="inv-menu__content__boxes">
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                    <div
-                                        class="inv-menu__content__boxes__box"
-                                    ></div>
-                                </div>
-                                <div
-                                    class="inv-menu__content__description-bubble"
-                                >
-                                    <img
-                                        src="../static/assets/images/menus/inventory/inv-decription-bubble.png"
-                                        alt=""
-                                    />
-                                    <p
-                                        class="inv-menu__content__description-bubble__text"
-                                    ></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal__content-container__menu map-menu">
-                            <img
-                                class="map-menu__bg"
-                                src="../static/assets/images/menus/bg.png"
-                                alt="Map menu's background"
-                            />
-                            <img
-                                class="map-menu__map"
-                                src="../static/assets/images/menus/map/map.png"
-                                alt="A map"
-                            />
-                            <button
-                                class="menu-close-button map-menu__close-button"
-                                title="Close"
-                            >
-                                <img
-                                    src="../static/assets/images/menus/close-button.png"
-                                    alt="Close button"
-                                />
-                            </button>
-                        </div>
-                        <div
-                            class="modal__content-container__menu options-menu"
-                        >
-                            <img
-                                class="options-menu__bg"
-                                src="../static/assets/images/menus/bg.png"
-                                alt="Options menu's background"
-                            />
-
-                            <button
-                                class="menu-close-button options-menu__close-button"
-                                title="Close"
-                            >
-                                <img
-                                    src="../static/assets/images/menus/close-button.png"
-                                    alt="Close button"
-                                />
-                            </button>
-
-                            <div class="options-menu__content">
-                                <h1 class="options-menu__content__title">
-                                    Options
-                                </h1>
-                                <div
-                                    class="options-menu__content__range options-menu__content__range--music"
-                                >
-                                    <label for="music">
-                                        <p>Music</p>
-                                    </label>
-                                    <input
-                                        type="range"
-                                        id="music"
-                                        min="0"
-                                        max="100"
-                                        step="10"
-                                        value="100"
-                                    />
-                                    <p class="range-value music"></p>
-                                </div>
-                                <div
-                                    class="options-menu__content__range options-menu__content__range--sfx"
-                                >
-                                    <label for="sfx">
-                                        <p>SFX</p>
-                                    </label>
-                                    <input
-                                        type="range"
-                                        id="sfx"
-                                        min="0"
-                                        max="100"
-                                        step="10"
-                                        value="100"
-                                    />
-                                    <p class="range-value sfx"></p>
-                                </div>
-                                <div class="options-menu__content__language">
-                                    <p>Language</p>
-                                    <div>
-                                        <button
-                                            class="options-menu__content__language__left-arrow"
-                                        >
-                                            <img
-                                                src="../static/assets/images/menus/options/select-arrow.png"
-                                                alt="Left arrow"
-                                            />
-                                        </button>
-                                        <div
-                                            class="options-menu__content__language__choices-wrapper"
-                                        >
-                                            <div
-                                                class="options-menu__content__language__choices-wrapper__choices"
-                                            >
-                                                <p>English</p>
-                                                <p>French</p>
-                                            </div>
-                                        </div>
-                                        <button
-                                            class="options-menu__content__language__right-arrow"
-                                        >
-                                            <img
-                                                src="../static/assets/images/menus/options/select-arrow.png"
-                                                alt="Left arrow"
-                                            />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="debugger">
-                    <button onclick="displayModalMenu('inv')">
-                        <p>displayModalMenu('inv')</p>
-                    </button>
-                    <button onclick="openModal()">
-                        <p>openModal()</p>
-                    </button>
-                    <button onclick="closeModal()">
-                        <p>closeModal()</p>
-                    </button>
-                </div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.scss" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app">
+        <div class="scene">
+          <img class="scene__bg" />
+          <div class="scene__items"></div>
+          <div class="scene__characters"></div>
+          <div class="scene__move-arrows"></div>
         </div>
-        <script src="./js/main.js" type="module"></script>
-        <script src="./js/modules/modal-handler.js"></script>
-    </body>
+        <div class="dialogue dialogue--left">
+          <div class="dialogue__backdrop"></div>
+          <img class="dialogue__character-img" />
+          <div class="dialogue__content">
+            <img
+              src="../static/assets/images/menus/dialogue/dialogue-box.png"
+              alt=""
+              class="dialogue__content__box"
+            />
+            <p class="dialogue__content__name"></p>
+            <p class="dialogue__content__text-content"></p>
+            <img
+              src="../static/assets/images/menus/dialogue/dialogue-next-arrow.gif"
+              alt=""
+              class="dialogue__content__next-arrow"
+            />
+          </div>
+        </div>
+        <div class="choices-wrapper"></div>
+
+        <div class="menus">
+          <button class="move-button" title="Move">
+            <img src="../static/assets/images/icons/move-button.png" alt="" />
+          </button>
+          <nav class="menu">
+            <img
+              class="menu__bg"
+              src="../static/assets/images/icons/menu/menu.png"
+              alt=""
+            />
+            <button class="menu__toggle-button">
+              <img
+                src="../static/assets/images/icons/menu/close-button.png"
+                alt=""
+                title="Close"
+              />
+            </button>
+            <div class="menu__buttons-wrapper">
+              <button class="menu__button diary-button" title="Diary">
+                <img
+                  src="../static/assets/images/icons/menu/diary-button.png"
+                  alt=""
+                />
+              </button>
+              <button class="menu__button inv-button" title="Inventory">
+                <img
+                  src="../static/assets/images/icons/menu/inv-button.png"
+                  alt=""
+                />
+              </button>
+              <button class="menu__button map-button" title="Map">
+                <img
+                  src="../static/assets/images/icons/menu/map-button.png"
+                  alt=""
+                />
+              </button>
+              <button class="menu__button options-button" title="Options">
+                <img
+                  src="../static/assets/images/icons/menu/options-button.png"
+                  alt=""
+                />
+              </button>
+            </div>
+          </nav>
+          <div class="alert-message">
+            <img
+              src="../static/assets/images/menus/alert-message/alert-message-bg.png"
+              alt="Black rectangle with white border"
+            />
+            <p>Alert</p>
+          </div>
+        </div>
+        <div class="modal">
+          <div class="modal__backdrop"></div>
+          <div class="modal__content-container">
+            <div class="modal__content-container__menu diary-menu">
+              <img
+                src="../static/assets/images/menus/diary/diary.png"
+                alt="A diary"
+              />
+              <div class="diary-menu__content">
+                <div class="diary-menu__content__tasks"></div>
+                <div class="diary-menu__content__findings">
+                  <ul></ul>
+                </div>
+              </div>
+              <button
+                class="menu-close-button diary-menu__close-button"
+                title="Close"
+              ></button>
+            </div>
+            <div class="modal__content-container__menu inv-menu">
+              <img
+                class="options-menu__bg"
+                src="../static/assets/images/menus/bg.png"
+                alt="Options menu's background"
+              />
+              <button
+                class="menu-close-button options-menu__close-button"
+                title="Close"
+              >
+                <img
+                  src="../static/assets/images/menus/close-button.png"
+                  alt="Close button"
+                />
+              </button>
+              <div class="inv-menu__content">
+                <h1>Inventory</h1>
+                <div class="inv-menu__content__boxes">
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                  <div class="inv-menu__content__boxes__box"></div>
+                </div>
+                <div class="inv-menu__content__description-bubble">
+                  <img
+                    src="../static/assets/images/menus/inventory/inv-decription-bubble.png"
+                    alt=""
+                  />
+                  <p class="inv-menu__content__description-bubble__text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="modal__content-container__menu map-menu">
+              <img
+                class="map-menu__bg"
+                src="../static/assets/images/menus/bg.png"
+                alt="Map menu's background"
+              />
+              <img
+                class="map-menu__map"
+                src="../static/assets/images/menus/map/map.png"
+                alt="A map"
+              />
+              <button
+                class="menu-close-button map-menu__close-button"
+                title="Close"
+              >
+                <img
+                  src="../static/assets/images/menus/close-button.png"
+                  alt="Close button"
+                />
+              </button>
+            </div>
+            <div class="modal__content-container__menu options-menu">
+              <img
+                class="options-menu__bg"
+                src="../static/assets/images/menus/bg.png"
+                alt="Options menu's background"
+              />
+
+              <button
+                class="menu-close-button options-menu__close-button"
+                title="Close"
+              >
+                <img
+                  src="../static/assets/images/menus/close-button.png"
+                  alt="Close button"
+                />
+              </button>
+
+              <div class="options-menu__content">
+                <h1 class="options-menu__content__title">Options</h1>
+                <div
+                  class="options-menu__content__range options-menu__content__range--music"
+                >
+                  <label for="music">
+                    <p>Music</p>
+                  </label>
+                  <input
+                    type="range"
+                    id="music"
+                    min="0"
+                    max="100"
+                    step="10"
+                    value="100"
+                  />
+                  <p class="range-value music"></p>
+                </div>
+                <div
+                  class="options-menu__content__range options-menu__content__range--sfx"
+                >
+                  <label for="sfx">
+                    <p>SFX</p>
+                  </label>
+                  <input
+                    type="range"
+                    id="sfx"
+                    min="0"
+                    max="100"
+                    step="10"
+                    value="100"
+                  />
+                  <p class="range-value sfx"></p>
+                </div>
+                <div class="options-menu__content__language">
+                  <p>Language</p>
+                  <div>
+                    <button class="options-menu__content__language__left-arrow">
+                      <img
+                        src="../static/assets/images/menus/options/select-arrow.png"
+                        alt="Left arrow"
+                      />
+                    </button>
+                    <div
+                      class="options-menu__content__language__choices-wrapper"
+                    >
+                      <div
+                        class="options-menu__content__language__choices-wrapper__choices"
+                      >
+                        <p>English</p>
+                        <p>French</p>
+                      </div>
+                    </div>
+                    <button
+                      class="options-menu__content__language__right-arrow"
+                    >
+                      <img
+                        src="../static/assets/images/menus/options/select-arrow.png"
+                        alt="Left arrow"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="debugger">
+          <button onclick="displayModalMenu('inv')">
+            <p>displayModalMenu('inv')</p>
+          </button>
+          <button onclick="openModal()">
+            <p>openModal()</p>
+          </button>
+          <button onclick="closeModal()">
+            <p>closeModal()</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/modules/modal-handler.js"></script>
+  </body>
 </html>
