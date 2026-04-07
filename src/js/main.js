@@ -42,270 +42,13 @@ const container = document.querySelector(".container"),
 
 import data from "../data/data.json";
 
-const inventory = [
-  {
-    name: "Owly's postcard",
-    img: "owly-s-postcard.png",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-  {
-    name: "Empty",
-  },
-];
-const dummyTasks = [
-  {
-    name: "Beat Asriel",
-    completed: false,
-  },
-  {
-    name: "Beat Flowey",
-    completed: false,
-  },
-  {
-    name: "Beat Asgore",
-    completed: false,
-  },
-  ,
-  {
-    name: "Beat Undyne",
-    completed: false,
-  },
-  {
-    name: "Beat Levil",
-    completed: true,
-  },
-  {
-    name: "Beat Sans",
-    completed: false,
-  },
-];
-const dummyFindings = [
-  "You killed Mummy.",
-  "You joined Levil.",
-  "You are dead.",
-];
-const dummyScenes = [
-  {
-    id: 1,
-    name: "The Front of the Desert Pyramid",
-    biome: "desert",
-    zone: "pyramid",
-    position: "front",
-    bg: "desert-pyramid-front.gif",
-    items: [
-      {
-        name: "Bomb",
-        img: "bomb.png",
-        x: 24,
-        y: 103,
-        onClick: { eventType: "addToInv" },
-        taken: false,
-        require: 0,
-      },
-    ],
-    characters: [
-      {
-        name: "Smiling guy",
-        img: "smiling-guy.png",
-        x: 200,
-        y: 87,
-        onClick: {
-          eventType: "dialogue",
-          dialogueId: 1,
-        },
-      },
-    ],
-    movementArrows: [
-      {
-        arrowType: "bottom",
-        shape: "bottom",
-        goToSceneId: 2,
-      },
-      {
-        arrowType: "custom",
-        shape: "top-right",
-        x: 161,
-        y: 111,
-        goToSceneId: 1,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "",
-    biome: "desert",
-    zone: "path",
-    bg: "desert-path.png",
-    items: [],
-    characters: [
-      {
-        name: "Wally",
-        img: "wally.png",
-        x: 75,
-        y: 55,
-        onClick: {
-          eventType: "dialogue",
-          dialogueId: 0,
-        },
-      },
-    ],
-    movementArrows: [
-      {
-        arrowType: "custom",
-        shape: "top-right",
-        x: 161,
-        y: 111,
-        goToSceneId: 1,
-      },
-      {
-        arrowType: "custom",
-        shape: "top-left",
-        x: 71,
-        y: 111,
-        goToSceneId: 3,
-      },
-    ],
-  },
-];
-const story = [
-  {
-    dialogueId: 0,
-    characters: ["You", "Wally"],
-    textBoxes: [
-      {
-        characterSpeaking: 1,
-        expression: "smiling",
-        lines: ["HIIII!!!!! I'M WALLYYYYYY.", "i'm a wall HAHAHAHAHAAHHAHA."],
-      },
-      {
-        characterSpeaking: 0,
-        expression: "idle",
-        lines: ["O-Okay??"],
-      },
-      {
-        characterSpeaking: 1,
-        expression: "smiling",
-        lines: [
-          "WALLYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY!",
-        ],
-      },
-      {
-        characterSpeaking: 0,
-        expression: "idle",
-        lines: ["Yep, that's your name."],
-      },
-      {
-        eventType: "choice",
-        choices: [
-          {
-            name: '"That\'s super cool!"',
-            consequences: [
-              {
-                consequenceType: "playerAction",
-                id: 0,
-                name: "Told Wally that he was super cool.",
-              },
-              {
-                consequenceType: "dialogue",
-                dialogueId: 2,
-              },
-            ],
-          },
-          {
-            name: "Leave the conversation",
-            consequences: [],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    dialogueId: 1,
-    characters: ["You", "Smiling guy"],
-    textBoxes: [
-      {
-        characterSpeaking: 1,
-        expression: "smiling",
-        lines: [
-          "Hi you.",
-          "Lorem ipsum etc man i don't even care at this point.",
-        ],
-      },
-      {
-        characterSpeaking: 0,
-        expression: "idle",
-        lines: ["Woah man, calm down."],
-      },
-      {
-        characterSpeaking: 1,
-        expression: "smiling",
-        lines: [
-          "Yeah sorry, i'm just tired of being called the lorem ipsum guy, you know ?",
-          "Like, i'm not only defined by that, i like video-games, music and stuff!",
-          "i don't just say lorem ipsum blablabla all the time...",
-        ],
-      },
-      {
-        characterSpeaking: 0,
-        expression: "idle",
-        lines: ["Yeah man, I get you."],
-      },
-    ],
-  },
-  {
-    dialogueId: 2,
-    characters: ["You", "Wally"],
-    textBoxes: [
-      {
-        characterSpeaking: 1,
-        expression: "smiling",
-        lines: ["REAALLYYYY????", "THANKS MAN!!!!!!!"],
-      },
-      {
-        characterSpeaking: 0,
-        expression: "idle",
-        lines: ["No problem"],
-      },
-    ],
-  },
-];
+const scenes = data.scenes;
+const story = data.story;
+const spritesForEachCharacter = data.spritesForEachCharacter;
 
 //=============//
 //  VARIABLES  //
 //=============//
-const spritesForEachCharacter = [
-  {
-    name: "You",
-    dialogueVersion: "dark-smiling-guy.png",
-  },
-  {
-    name: "Smiling guy",
-    dialogueVersion: "smiling-guy.png",
-  },
-  {
-    name: "Wally",
-    dialogueVersion: "wally.png",
-  },
-];
-
-const moveArrowImgPathBeginning = "./assets/images/icons/move-arrows/arrow-";
 
 let textBoxIndex = 0;
 let currentTextBoxes = [];
@@ -319,15 +62,22 @@ let eventInfo = {
   objectImg: null,
 };
 
-const playerActions = [];
-
 //=============//
 //  FUNCTIONS  //
 //=============//
 
-if (localStorage.getItem("inventory") !== undefined) {
-  localStorage.setItem("inventory", JSON.stringify(inventory));
+function getData(name) {
+  return JSON.parse(localStorage.getItem(name));
 }
+
+function setData(name, value) {
+  localStorage.setItem(name, JSON.stringify(value));
+}
+
+setData("inventory", data.default.inventory);
+setData("tasks", data.default.tasks);
+setData("findings", data.default.findings);
+setData("playerActions", data.default.playerActions);
 
 // from utils.js
 window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window
@@ -339,8 +89,8 @@ makeImagesUndraggable();
 handleOptionsMenuRangeValueDisplay();
 handleOptionsMenuLanguageSelection();
 disableCheckingAbilityFromDiaryMenuCheckboxes();
-handleInvMenuItemsDisplay(inventory);
-handleDiaryMenuTasksAndFindingsDisplay(dummyTasks, dummyFindings);
+handleInvMenuItemsDisplay(getData("inventory"));
+handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
 handleMenuToggle();
 handleMoveButtonClick();
 
@@ -541,7 +291,7 @@ function handleSceneObject(object, objectType) {
 function handleMoveArrow(moveArrow) {
   const moveArrowImg = document.createElement("img");
   moveArrowImg.classList.add("move-arrow");
-  moveArrowImg.src = `${moveArrowImgPathBeginning}${moveArrow.shape}.png`;
+  moveArrowImg.src = `${data.moveArrowImgPathBeginning}${moveArrow.shape}.png`;
   switch (moveArrow.arrowType) {
     case "bottom":
       moveArrowImg.style.bottom = "3px";
@@ -568,7 +318,7 @@ function handleScene(sceneId) {
   sceneItems.textContent = "";
   sceneCharacters.textContent = "";
   sceneMoveArrows.textContent = "";
-  const selectedScene = dummyScenes.find((scene) => scene.id === sceneId);
+  const selectedScene = scenes.find((scene) => scene.sceneId === sceneId);
   if (selectedScene) {
     sceneBg.src = `./assets/images/backgrounds/${selectedScene.bg}`;
     sceneBg.alt = selectedScene.name;
