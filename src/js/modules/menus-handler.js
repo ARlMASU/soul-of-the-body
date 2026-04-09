@@ -74,8 +74,8 @@ export function handleOptionsMenuLanguageSelection() {
   });
 }
 
-export function handleInvMenuItemsDisplay(inventory) {
-  console.log(inventory);
+export function handleInvMenuItemsDisplay() {
+  const inventory = JSON.parse(localStorage.getItem("inventory"));
   const app = document.querySelector(".app"),
     boxes = document.querySelectorAll(".inv-menu__content__boxes__box"),
     descriptionBubble = document.querySelector(
@@ -147,7 +147,6 @@ export function handleInvMenuItemsDisplay(inventory) {
 export function handleDiaryMenuTasksAndFindingsDisplay(tasks, findings) {
   const diaryTasks = document.querySelector(".diary-menu__content__tasks"),
     diaryFindings = document.querySelector(".diary-menu__content__findings ul");
-  console.log(tasks, findings);
   tasks.forEach((task) => {
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("diary-menu__content__tasks__task");

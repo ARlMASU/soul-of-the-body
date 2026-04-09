@@ -249,14 +249,13 @@
         </div>
 
         <div class="debugger">
-          <button onclick="displayModalMenu('inv')">
-            <p>displayModalMenu('inv')</p>
+          <button
+            onclick="console.log(JSON.parse(localStorage.getItem('playerActions')));"
+          >
+            <p>getItem("playerActions")</p>
           </button>
-          <button onclick="openModal()">
-            <p>openModal()</p>
-          </button>
-          <button onclick="closeModal()">
-            <p>closeModal()</p>
+          <button onclick="localStorage.clear()">
+            <p>Clear localStorage</p>
           </button>
         </div>
       </div>

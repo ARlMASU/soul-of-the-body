@@ -69,7 +69,6 @@
         }
     ],
     "findings": ["You killed Mummy.", "You joined Levil.", "You are dead."],
-
     "scenes": [
         {
             "sceneId": 1,

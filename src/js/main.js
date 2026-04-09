@@ -18,6 +18,16 @@ import {
   changeSceneObjectsClickability,
 } from "./modules/utils.js";
 
+//===============//
+//  IMPORT DATA  //
+//===============//
+
+import data from "../data/data.json";
+
+const scenes = data.scenes;
+const story = data.story;
+const spritesForEachCharacter = data.spritesForEachCharacter;
+
 //========================//
 //  HTML ELEMENTS IMPORT  //
 //========================//
@@ -35,16 +45,6 @@ const container = document.querySelector(".container"),
   dialogueCharacterImg = document.querySelector(".dialogue__character-img"),
   menus = document.querySelector(".menus"),
   choicesWrapper = document.querySelector(".choices-wrapper");
-
-//===============//
-//  IMPORT DATA  //
-//===============//
-
-import data from "../data/data.json";
-
-const scenes = data.scenes;
-const story = data.story;
-const spritesForEachCharacter = data.spritesForEachCharacter;
 
 //=============//
 //  VARIABLES  //
@@ -74,27 +74,8 @@ function setData(name, value) {
   localStorage.setItem(name, JSON.stringify(value));
 }
 
-setData("inventory", data.default.inventory);
-setData("tasks", data.default.tasks);
-setData("findings", data.default.findings);
-setData("playerActions", data.default.playerActions);
-
-// from utils.js
-window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window
-resizeApp(container, app); // invokes resizeApp() once at the loading of the page
-
-makeImagesUndraggable();
-
-//from menusHandler.js
-handleOptionsMenuRangeValueDisplay();
-handleOptionsMenuLanguageSelection();
-disableCheckingAbilityFromDiaryMenuCheckboxes();
-handleInvMenuItemsDisplay(getData("inventory"));
-handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
-handleMenuToggle();
-handleMoveButtonClick();
-
 function handleEventType() {
+  console.log(eventInfo);
   switch (eventInfo.event.eventType) {
     case "dialogue":
       handleDialogue(eventInfo.event.dialogueId);
@@ -106,8 +87,10 @@ function handleEventType() {
       break;
     case "addToInv":
       addItemToInv(eventInfo.object, eventInfo.objectImg);
+      break;
     default:
       console.log("Error, unvalid eventType");
+      break;
   }
   eventInfo = {
     event: null,
@@ -117,6 +100,21 @@ function handleEventType() {
   };
 }
 
+function handlePlayerAction(consequence) {
+  console.log(getData("playerActions"));
+  const playerActions = getData("playerActions");
+  if (
+    !playerActions?.some(
+      (playerAction) =>
+        playerAction.playerActionId === consequence.playerActionId
+    )
+  ) {
+    playerActions.push(consequence);
+    setData("playerActions", playerActions);
+    console.log(getData("playerActions"));
+  }
+}
+
 function handleConsequences(consequences) {
   consequences.forEach((consequence) => {
     switch (consequence.consequenceType) {
@@ -124,13 +122,7 @@ function handleConsequences(consequences) {
         handleDialogue(consequence.dialogueId);
         break;
       case "playerAction":
-        if (
-          !playerActions.some(
-            (playerAction) => playerAction.id === consequence.id
-          )
-        ) {
-          playerActions.push(consequence);
-        }
+        handlePlayerAction(consequence);
         break;
       default:
         console.log("Error, unvalid consequences.");
@@ -243,14 +235,21 @@ function handleDialogue(dialogueId) {
 function addItemToInv(item, itemImg) {
   if (
     !("require" in item) ||
-    playerActions.some((playerAction) => playerAction.id === item.require)
+    getData("playerActions").some(
+      (playerAction) => playerAction.playerActionId === item.require
+    )
   ) {
+    let inventory = getData("inventory");
     const emptySlotIndex = inventory.findIndex((slot) => slot.name === "Empty");
     if (emptySlotIndex && inventory[7].name !== "Empty") {
       alertMessageShow("Too many items.");
     } else {
       inventory[emptySlotIndex] = item;
+      setData("inventory", inventory);
       item.taken = true;
+      let objectsToHide = getData("objectsToHide");
+      objectsToHide.push(item.name);
+      setData("objectsToHide", objectsToHide);
       handleInvMenuItemsDisplay(inventory);
       alertMessageShow(`Added ${item.name} to inventory.`);
       itemImg.classList.add("item--animate");
@@ -279,7 +278,9 @@ function handleSceneObject(object, objectType) {
       eventInfo.objectImg = objectImg;
       handleEventType();
     });
-  if (objectType === "item" && object.taken === false) {
+  if (getData("objectsToHide").includes(object.name)) {
+    return;
+  } else if (objectType === "item") {
     sceneItems.append(objectImg);
   } else if (objectType === "character") {
     sceneCharacters.append(objectImg);
@@ -298,8 +299,10 @@ function handleMoveArrow(moveArrow) {
       moveArrowImg.style.left = "117px";
       break;
     case "left":
+      // to be determined
       break;
     case "right":
+      // to be determined
       break;
     case "custom":
       moveArrowImg.style.top = `${moveArrow.y}px`;
@@ -333,5 +336,36 @@ function handleScene(sceneId) {
     console.log("Error 404, unvalid scene id.");
   }
 }
+
+if (getData("inventory") === null) {
+  setData("inventory", data.default.inventory);
+}
+if (getData("tasks") === null) {
+  setData("tasks", data.default.tasks);
+}
+if (getData("findings") === null) {
+  setData("findings", data.default.findings);
+}
+if (getData("playerActions") === null) {
+  setData("playerActions", []);
+}
+if (getData("objectsToHide") === null) {
+  setData("objectsToHide", []);
+}
+
+// from utils.js
+window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window
+resizeApp(container, app); // invokes resizeApp() once at the loading of the page
+
+makeImagesUndraggable();
+
+//from menusHandler.js
+handleOptionsMenuRangeValueDisplay();
+handleOptionsMenuLanguageSelection();
+disableCheckingAbilityFromDiaryMenuCheckboxes();
+handleInvMenuItemsDisplay(getData("inventory"));
+handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
+handleMenuToggle();
+handleMoveButtonClick();
 
 handleScene(1);
