@@ -14,65 +14,10 @@
             "dialogueVersion": "wally.png"
         }
     ],
-    "inventory": [
-        {
-            "name": "Owly's postcard",
-            "img": "owly-s-postcard.png"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        },
-        {
-            "name": "Empty"
-        }
-    ],
-    "tasks": [
-        {
-            "name": "Beat Asriel",
-            "completed": false
-        },
-        {
-            "name": "Beat Flowey",
-            "completed": false
-        },
-        {
-            "name": "Beat Asgore",
-            "completed": false
-        },
-
-        {
-            "name": "Beat Undyne",
-            "completed": false
-        },
-        {
-            "name": "Beat Levil",
-            "completed": true
-        },
-        {
-            "name": "Beat Sans",
-            "completed": false
-        }
-    ],
-    "findings": ["You killed Mummy.", "You joined Levil.", "You are dead."],
     "scenes": [
         {
             "sceneId": 1,
-            "name": "The Front of the Desert Pyramid",
+            "name": "Front of the Pyramid",
             "biome": "desert",
             "zone": "pyramid",
             "position": "front",
@@ -117,7 +62,7 @@
         },
         {
             "sceneId": 2,
-            "name": "",
+            "name": "Exit of Desert Village",
             "biome": "desert",
             "zone": "path",
             "bg": "desert-path.png",

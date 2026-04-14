@@ -44,7 +44,11 @@ const container = document.querySelector(".container"),
   ),
   dialogueCharacterImg = document.querySelector(".dialogue__character-img"),
   menus = document.querySelector(".menus"),
-  choicesWrapper = document.querySelector(".choices-wrapper");
+  choicesWrapper = document.querySelector(".choices-wrapper"),
+  clearBtn = document.querySelector(".clear"),
+  sceneTransitionBlind = document.querySelector(".scene-transition-blind"),
+  locationNameWrapper = document.querySelector(".scene__location-name"),
+  locationNameText = document.querySelector(".scene__location-name__text");
 
 //=============//
 //  VARIABLES  //
@@ -62,6 +66,16 @@ let eventInfo = {
   objectImg: null,
 };
 
+const defaultDatas = [
+  ["inventory", data.default.inventory],
+  ["tasks", data.default.tasks],
+  ["findings", data.default.findings],
+  ["playerActions", []],
+  ["objectsToHide", []],
+  ["currentSceneId", 1],
+  ["username", null],
+];
+
 //=============//
 //  FUNCTIONS  //
 //=============//
@@ -74,8 +88,26 @@ function setData(name, value) {
   localStorage.setItem(name, JSON.stringify(value));
 }
 
+function setDefaultData(dataName, defaultData) {
+  if (getData(dataName) === null) {
+    setData(dataName, defaultData);
+  }
+}
+
+const clearDatas = () => {
+  localStorage.clear();
+  location.reload();
+};
+
+function showLocationName(locationName) {
+  locationNameText.textContent = locationName;
+  locationNameWrapper.classList.add("scene__location-name--show");
+  locationNameWrapper.addEventListener("animationend", () => {
+    locationNameWrapper.classList.remove("scene__location-name--show");
+  });
+}
+
 function handleEventType() {
-  console.log(eventInfo);
   switch (eventInfo.event.eventType) {
     case "dialogue":
       handleDialogue(eventInfo.event.dialogueId);
@@ -101,7 +133,6 @@ function handleEventType() {
 }
 
 function handlePlayerAction(consequence) {
-  console.log(getData("playerActions"));
   const playerActions = getData("playerActions");
   if (
     !playerActions?.some(
@@ -111,7 +142,6 @@ function handlePlayerAction(consequence) {
   ) {
     playerActions.push(consequence);
     setData("playerActions", playerActions);
-    console.log(getData("playerActions"));
   }
 }
 
@@ -126,6 +156,7 @@ function handleConsequences(consequences) {
         break;
       default:
         console.log("Error, unvalid consequences.");
+        break;
     }
   });
 }
@@ -318,46 +349,33 @@ function handleMoveArrow(moveArrow) {
 }
 
 function handleScene(sceneId) {
-  sceneItems.textContent = "";
-  sceneCharacters.textContent = "";
-  sceneMoveArrows.textContent = "";
   const selectedScene = scenes.find((scene) => scene.sceneId === sceneId);
-
   if (selectedScene) {
-    if(getData("currentSceneId") !== sceneId) {
-      setData("currentSceneId", sceneId);
-    }
-    sceneBg.src = `./assets/images/backgrounds/${selectedScene.bg}`;
-    sceneBg.alt = selectedScene.name;
-    selectedScene.items?.forEach((item) => handleSceneObject(item, "item"));
-    selectedScene.characters?.forEach((character) =>
-      handleSceneObject(character, "character")
-    );
-    selectedScene.movementArrows?.forEach((moveArrow) =>
-      handleMoveArrow(moveArrow)
-    );
+    sceneTransitionBlind.classList.add("scene-transition-blind--show");
+    setTimeout(() => {
+      sceneItems.textContent = "";
+      sceneCharacters.textContent = "";
+      sceneMoveArrows.textContent = "";
+      showLocationName(selectedScene.name);
+      if (getData("currentSceneId") !== sceneId) {
+        setData("currentSceneId", sceneId);
+      }
+      sceneBg.src = `./assets/images/backgrounds/${selectedScene.bg}`;
+      sceneBg.alt = selectedScene.name;
+      selectedScene.items?.forEach((item) => handleSceneObject(item, "item"));
+      selectedScene.characters?.forEach((character) =>
+        handleSceneObject(character, "character")
+      );
+      selectedScene.movementArrows?.forEach((moveArrow) =>
+        handleMoveArrow(moveArrow)
+      );
+    }, 350);
+    sceneTransitionBlind.addEventListener("animationend", () => {
+      sceneTransitionBlind.classList.remove("scene-transition-blind--show");
+    });
   } else {
     console.log("Error 404, unvalid scene id.");
   }
-}
-
-if (getData("inventory") === null) {
-  setData("inventory", data.default.inventory);
-}
-if (getData("tasks") === null) {
-  setData("tasks", data.default.tasks);
-}
-if (getData("findings") === null) {
-  setData("findings", data.default.findings);
-}
-if (getData("playerActions") === null) {
-  setData("playerActions", []);
-}
-if (getData("objectsToHide") === null) {
-  setData("objectsToHide", []);
-}
-if(getData("currentSceneId") === null){
-  setData("currentSceneId", 1);
 }
 
 // from utils.js
@@ -366,7 +384,16 @@ resizeApp(container, app); // invokes resizeApp() once at the loading of the pag
 
 makeImagesUndraggable();
 
-//from menusHandler.js
+// from main.js
+clearBtn.addEventListener("click", clearDatas);
+
+defaultDatas.forEach((defaultData) => {
+  setDefaultData(defaultData[0], defaultData[1]);
+});
+
+handleScene(getData("currentSceneId"));
+
+// from menusHandler.js
 handleOptionsMenuRangeValueDisplay();
 handleOptionsMenuLanguageSelection();
 disableCheckingAbilityFromDiaryMenuCheckboxes();
@@ -375,14 +402,6 @@ handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
 handleMenuToggle();
 handleMoveButtonClick();
 
-handleScene(getData("currentSceneId"));
-
-const clear = () => {
-  localStorage.clear();
-  location.reload();
+if (getData("username") === null) {
+  //window.location.href = "/main-menu.html";
 }
-
-
-const clearBtn = document.querySelector(".clear");
-
-clearBtn.addEventListener('click', clear);

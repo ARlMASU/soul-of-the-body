@@ -36,6 +36,36 @@
     }
 }
 
+@keyframes fadeInOutLong {
+    from{
+        opacity: 0;
+    }
+    35%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+@keyframes blindFadeInOut {
+    from{
+        opacity: 0;
+        pointer-events: none;
+    }
+    50%{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    to{
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
 *,
 ::before,
 ::after {
@@ -165,6 +195,35 @@ body {
                         pointer-events: auto;
                         opacity: 1;
                     }
+                }
+            }
+            &__location-name{
+                position: absolute;
+                top: 12px;
+                left: 2px;
+                padding: .25rem 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+                text-align: center;
+                max-width: 120px;
+                opacity: 0;
+                background: linear-gradient(
+                    90deg,
+                    rgba(25, 25, 25, 0) 0%,
+                    rgba(25, 25, 25, .9) 45%,
+                    rgba(25, 25, 25, .9) 55%,
+                    rgba(25, 25, 25, 0) 100%
+                );
+                &--show{
+                    animation: fadeInOutLong 3.5s ease forwards;
+                }
+                p{
+                    font-family: "pixer";
+                    font-size: .5rem;
+                    text-align: center;
+                    text-wrap: wrap;
+                    width: 100%;
                 }
             }
         }
@@ -358,6 +417,19 @@ body {
             }
         }
 
+        .scene-transition-blind{
+            position: absolute;
+            z-index: 50;
+            width: 110%;
+            height: 110%;
+            background: var(--color-2);
+            opacity: 0;
+            pointer-events: none;
+            &--show{
+                animation: blindFadeInOut .8s ease forwards;
+            }
+        }
+
         .menus {
             position: absolute;
             width: 100%;
@@ -528,7 +600,7 @@ body {
             display: flex;
             flex-flow: column;
             gap: 2px;
-            //display: none;
+            display: none;
             button {
                 width: fit-content;
                 background: white;
