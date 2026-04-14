@@ -322,7 +322,11 @@ function handleScene(sceneId) {
   sceneCharacters.textContent = "";
   sceneMoveArrows.textContent = "";
   const selectedScene = scenes.find((scene) => scene.sceneId === sceneId);
+
   if (selectedScene) {
+    if(getData("currentSceneId") !== sceneId) {
+      setData("currentSceneId", sceneId);
+    }
     sceneBg.src = `./assets/images/backgrounds/${selectedScene.bg}`;
     sceneBg.alt = selectedScene.name;
     selectedScene.items?.forEach((item) => handleSceneObject(item, "item"));
@@ -352,6 +356,9 @@ if (getData("playerActions") === null) {
 if (getData("objectsToHide") === null) {
   setData("objectsToHide", []);
 }
+if(getData("currentSceneId") === null){
+  setData("currentSceneId", 1);
+}
 
 // from utils.js
 window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window
@@ -368,4 +375,14 @@ handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
 handleMenuToggle();
 handleMoveButtonClick();
 
-handleScene(1);
+handleScene(getData("currentSceneId"));
+
+const clear = () => {
+  localStorage.clear();
+  location.reload();
+}
+
+
+const clearBtn = document.querySelector(".clear");
+
+clearBtn.addEventListener('click', clear);
