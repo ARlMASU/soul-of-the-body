@@ -1,5 +1,5 @@
 {
-    "moveArrowImgPathBeginning":"./assets/images/icons/move-arrows/arrow-",
+    "moveArrowImgPathBeginning":"/assets/images/icons/move-arrows/arrow-",
     "spritesForEachCharacter": [
         {
             "name": "You",

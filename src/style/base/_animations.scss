@@ -45,12 +45,19 @@
     }
 }
 
-@keyframes blindFadeInOut {
+@keyframes blindFadeIn {
     from {
         opacity: 0;
         pointer-events: none;
     }
-    50% {
+    to {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@keyframes blindFadeOut {
+    from {
         opacity: 1;
         pointer-events: auto;
     }
