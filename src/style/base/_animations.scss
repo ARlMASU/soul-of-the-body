@@ -1,0 +1,61 @@
+@keyframes popOut {
+    from {
+        transform: scale(1);
+    }
+    35% {
+        transform: scale(1.2);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateY(-150%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+    35% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes blindFadeInOut {
+    from {
+        opacity: 0;
+        pointer-events: none;
+    }
+    50% {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

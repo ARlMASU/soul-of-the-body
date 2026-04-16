@@ -1,0 +1,129 @@
+.menus {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+
+    &--dialogue-showed {
+        opacity: 0;
+        pointer-events: none;
+        .move-button {
+            pointer-events: none !important;
+        }
+    }
+    .move-button {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        pointer-events: auto;
+    }
+
+    .menu {
+        position: absolute;
+        bottom: -38px;
+        width: 100%;
+        height: 37px;
+        display: flex;
+        flex-flow: row;
+        transition: bottom 0.2s cubic-bezier(0, 0.37, 0.38, 1);
+        pointer-events: auto;
+        &--open {
+            bottom: 0 !important;
+        }
+
+        &__bg {
+            position: absolute;
+            bottom: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        &__toggle-button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 36px;
+            height: 54px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 29px 0 10px 0;
+        }
+
+        &__buttons-wrapper {
+            position: relative;
+            width: 221px;
+            z-index: 1000;
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7px;
+        }
+    }
+
+    .alert-message {
+        position: absolute;
+        top: 4px;
+        height: fit-content;
+        transform: translateY(-150%);
+        opacity: 1;
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -75%);
+            text-align: center;
+            text-wrap: nowrap;
+        }
+        &--show {
+            animation: moveIn 1s ease forwards;
+        }
+        &--hide {
+            animation: fadeOut 1s ease forwards;
+        }
+    }
+}
+
+.map-menu {
+    &__map {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.map-menu,
+.inventory-menu,
+.options-menu {
+    position: relative;
+    &__bg {
+        position: relative;
+    }
+    &__close-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border-radius: 3px;
+        z-index: 100;
+        transition: background 0.1s ease;
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.5);
+
+            img {
+                filter: none;
+                scale: 1;
+            }
+        }
+    }
+}

@@ -33,3 +33,23 @@
     font-weight: bold;
     font-style: normal;
 }
+
+h1 {
+    font-family: "grapesoda";
+    color: var(--color-8);
+    font-size: 16px;
+}
+
+p {
+    color: var(--color-8);
+    font-family: sans-serif;
+    z-index: 100;
+    position: relative;
+    font-family: "pixer";
+    font-size: 10px;
+    line-height: 1;
+}
+
+a {
+    text-decoration: none;
+}

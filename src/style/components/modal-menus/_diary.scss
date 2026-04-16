@@ -28,7 +28,7 @@
                     display: none;
 
                     &:checked + label::before {
-                        background: url("../../../static/assets/images/menus/diary/checkbox-checked.png")
+                        background: url("../../static/assets/images/menus/diary/checkbox-checked.png")
                             no-repeat center / cover;
                     }
 
@@ -57,7 +57,7 @@
                             height: 7px;
                             display: inline-block;
                             margin: 2px 2px 0 0;
-                            background: url("../../../static/assets/images/menus/diary/checkbox-unchecked.png")
+                            background: url("../../static/assets/images/menus/diary/checkbox-unchecked.png")
                                 no-repeat center / cover;
                             cursor: not-allowed;
                         }
@@ -73,7 +73,7 @@
 
             ul {
                 list-style: square inside
-                    url("../../../static/assets/images/menus/diary/bullet-point.png");
+                    url("../../static/assets/images/menus/diary/bullet-point.png");
 
                 li {
                     user-select: text;
