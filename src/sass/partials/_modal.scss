@@ -1,0 +1,58 @@
+@use "../utils/mixins" as *;
+
+.modal {
+    @include abs;
+    @include fill;
+
+    z-index: 1000;
+    display: none;
+
+    &--display {
+        @include flex;
+
+        .modal__backdrop {
+            display: block;
+        }
+    }
+
+    &__backdrop {
+        @include abs;
+        @include fill;
+
+        z-index: 800;
+        display: none;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.5);
+        transition: opacity 0.25s ease;
+
+        &--show {
+            opacity: 1;
+        }
+    }
+
+    &__content-container {
+        @include fill;
+        @include flex;
+
+        &__menu {
+            display: none;
+            z-index: 900;
+            transform: translateY(200%);
+            transition: transform 0.3s cubic-bezier(0.82, 0, 1, 0.55);
+
+            &--display {
+                display: block;
+            }
+
+            &--show {
+                transform: translateY(0%);
+                transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.5, 1);
+            }
+
+            &--hide {
+                transform: translateY(200%);
+                transition: transform 0.3s cubic-bezier(0.82, 0, 1, 0.55);
+            }
+        }
+    }
+}

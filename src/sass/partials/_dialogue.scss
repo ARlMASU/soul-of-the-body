@@ -1,0 +1,129 @@
+@use "../utils/mixins" as *;
+
+.dialogue {
+    @include abs;
+    @include fill;
+    @include hide;
+
+    display: flex;
+    align-items: end;
+
+    &--show {
+        opacity: 1;
+        pointer-events: auto;
+
+        .dialogue {
+            &__content {
+                transform: translateY(0%);
+            }
+
+            &__character-img {
+                opacity: 1;
+            }
+        }
+    }
+
+    &--hide {
+        opacity: 1;
+        pointer-events: none;
+
+        .dialogue {
+            &__content {
+                transform: translateY(100%);
+            }
+
+            &__character-img {
+                opacity: 0;
+            }
+        }
+    }
+
+    &--left {
+        .dialogue {
+            &__character-img {
+                left: 0;
+                right: auto;
+                transform: scaleX(1);
+            }
+
+            &__content {
+                &__box {
+                    transform: scaleX(-1);
+                }
+
+                &__name {
+                    right: 0;
+                    left: auto;
+                }
+            }
+        }
+    }
+
+    &--right {
+        .dialogue {
+            &__character-img {
+                right: 0;
+                left: auto;
+                transform: scaleX(-1);
+            }
+
+            &__content {
+                &__box {
+                    transform: scaleX(1);
+                }
+
+                &__name {
+                    left: 0;
+                    right: auto;
+                }
+            }
+        }
+    }
+
+    &__character-img {
+        @include abs(bottom, left);
+
+        z-index: 300;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &__content {
+        position: absolute;
+        bottom: -1px;
+        height: fit-content;
+        z-index: 400;
+        display: flex;
+        align-items: end;
+        cursor: pointer;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+
+        &__name {
+            @include abs;
+            @include flex($direction: row, $justify: left);
+
+            width: 79px;
+            height: 18px;
+            padding: 0 8px;
+            text-align: center;
+            text-wrap: nowrap;
+            font-size: 10px;
+        }
+
+        &__text-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 59px;
+            padding: 8px 8px;
+            word-wrap: break-word;
+        }
+
+        &__next-arrow {
+            position: absolute;
+            bottom: 6px;
+            right: 12px;
+        }
+    }
+}

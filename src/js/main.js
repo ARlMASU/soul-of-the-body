@@ -2,22 +2,31 @@
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 import {
-    disableCheckingAbilityFromDiaryMenuCheckboxes,
+    getData,
+    setData,
+    setDefaultData,
+    clearDatas,
+    handlePlayerAction,
+} from "./modules/data-handler";
+
+import {
+    handleMenuToggle,
+    disableCheckingAbilityOfDiaryMenuCheckboxes,
     handleOptionsMenuRangeValueDisplay,
     handleOptionsMenuLanguageSelection,
-    handleDiaryMenuTasksAndFindingsDisplay,
     handleInvMenuItemsDisplay,
-    handleMenuToggle,
+    handleTasksAndFindingsDisplay,
     handleMoveButtonClick,
-} from "./modules/menus-handler.js";
+} from "./modules/menus-handler";
 
 import {
     resizeApp,
     makeImagesUndraggable,
     isEven,
     alertMessageShow,
+    showLocationName,
     changeSceneObjectsClickability,
-} from "./modules/utils.js";
+} from "./modules/utils";
 
 //===============//
 //  IMPORT DATA  //
@@ -48,9 +57,7 @@ const container = document.querySelector(".container"),
     menus = document.querySelector(".menus"),
     choicesWrapper = document.querySelector(".choices-wrapper"),
     clearBtn = document.querySelector(".clear"),
-    sceneTransitionBlind = document.querySelector(".scene-transition-blind"),
-    locationNameWrapper = document.querySelector(".scene__location-name"),
-    locationNameText = document.querySelector(".scene__location-name__text");
+    sceneTransitionBlind = document.querySelector(".scene-transition-blind");
 
 //=============//
 //  VARIABLES  //
@@ -82,33 +89,6 @@ const defaultDatas = [
 //  FUNCTIONS  //
 //=============//
 
-function getData(name) {
-    return JSON.parse(localStorage.getItem(name));
-}
-
-function setData(name, value) {
-    localStorage.setItem(name, JSON.stringify(value));
-}
-
-function setDefaultData(dataName, defaultData) {
-    if (getData(dataName) === null) {
-        setData(dataName, defaultData);
-    }
-}
-
-const clearDatas = () => {
-    localStorage.clear();
-    location.reload();
-};
-
-function showLocationName(locationName) {
-    locationNameText.textContent = locationName;
-    locationNameWrapper.classList.add("scene__location-name--show");
-    locationNameWrapper.addEventListener("animationend", () => {
-        locationNameWrapper.classList.remove("scene__location-name--show");
-    });
-}
-
 function handleEventType() {
     switch (eventInfo.event.eventType) {
         case "dialogue":
@@ -134,19 +114,6 @@ function handleEventType() {
     };
 }
 
-function handlePlayerAction(consequence) {
-    const playerActions = getData("playerActions");
-    if (
-        !playerActions?.some(
-            (playerAction) =>
-                playerAction.playerActionId === consequence.playerActionId,
-        )
-    ) {
-        playerActions.push(consequence);
-        setData("playerActions", playerActions);
-    }
-}
-
 function handleConsequences(consequences) {
     consequences.forEach((consequence) => {
         switch (consequence.consequenceType) {
@@ -165,10 +132,11 @@ function handleConsequences(consequences) {
 
 function closeDialogue(transitionToChoice) {
     dialogue.classList.add("dialogue--hide");
-    if (!transitionToChoice) {
-        backdrop.classList.remove("backdrop--show");
-    }
+
     setTimeout(() => {
+        if (!transitionToChoice) {
+            backdrop.classList.remove("backdrop--show");
+        }
         dialogue.removeEventListener("click", showDialogue);
         dialogue.classList.remove("dialogue--right");
         dialogue.classList.remove("dialogue--left");
@@ -440,7 +408,7 @@ resizeApp(container, app); // invokes resizeApp() once at the loading of the pag
 makeImagesUndraggable();
 
 // from main.js
-clearBtn.addEventListener("click", clearDatas);
+clearBtn.addEventListener("click", () => clearDatas());
 
 defaultDatas.forEach((defaultData) => {
     setDefaultData(defaultData[0], defaultData[1]);
@@ -449,14 +417,10 @@ defaultDatas.forEach((defaultData) => {
 handleScene(getData("currentSceneId"));
 
 // from menusHandler.js
+handleMenuToggle();
+disableCheckingAbilityOfDiaryMenuCheckboxes();
 handleOptionsMenuRangeValueDisplay();
 handleOptionsMenuLanguageSelection();
-disableCheckingAbilityFromDiaryMenuCheckboxes();
 handleInvMenuItemsDisplay(getData("inventory"));
-handleDiaryMenuTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
-handleMenuToggle();
+handleTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
 handleMoveButtonClick();
-
-if (getData("username") === null) {
-    // window.location.href = "/start-page.html";
-}

@@ -1,20 +1,16 @@
+@use "../../utils/mixins" as *;
+
 .inv-menu {
+    @include flex;
+
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     &__content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
+        @include abs;
+        @include fill;
+        @include flex;
+
         gap: 8px;
-        width: 100%;
-        height: 100%;
 
         &__boxes {
             position: relative;
@@ -22,32 +18,34 @@
             grid-template-columns: repeat(4, 40px);
             grid-template-rows: repeat(2, 40px);
             gap: 8px;
+
             &__box {
+                @include flex;
+
                 background: url("../../static/assets/images/menus/inventory/inv-box.png");
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 cursor: crosshair;
+
                 img {
                     pointer-events: none;
                 }
             }
         }
+
         &__description-bubble {
-            position: absolute;
-            top: 0;
-            left: 0;
+            @include abs;
+            @include hide;
+
             z-index: 1000;
-            opacity: 0;
             transition: opacity 0.2s ease;
-            pointer-events: none;
+
             &--display {
-                opacity: 1;
-                pointer-events: auto;
+                @include show;
             }
+
             img {
                 position: relative;
             }
+
             &__text {
                 position: absolute;
                 top: 50%;

@@ -1,5 +1,5 @@
 {
-    "moveArrowImgPathBeginning":"/assets/images/icons/move-arrows/arrow-",
+    "moveArrowImgPathBeginning": "/assets/images/icons/move-arrows/arrow-",
     "spritesForEachCharacter": [
         {
             "name": "You",
@@ -203,8 +203,8 @@
             ]
         }
     ],
-    "default":{
-        "inventory":[
+    "default": {
+        "inventory": [
             {
                 "name": "Owly's postcard",
                 "img": "owly-s-postcard.png"
@@ -233,8 +233,8 @@
         ],
         "tasks": [
             {
-                "name":"test",
-                "completed":false
+                "name": "test",
+                "completed": false
             }
         ],
         "findings": []
