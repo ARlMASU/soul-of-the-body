@@ -198,7 +198,7 @@
                 {
                     "characterSpeaking": 0,
                     "expression": "idle",
-                    "lines": ["No problem"]
+                    "lines": ["No problem."]
                 }
             ]
         }

@@ -1,4 +1,6 @@
-export function handleMenuToggle() {
+import { getData } from "./data-handler";
+
+function handleMenuToggle() {
     const menuToggleButton = document.querySelector(".menu__toggle-button"),
         menu = document.querySelector(".menu");
 
@@ -7,7 +9,7 @@ export function handleMenuToggle() {
     );
 }
 
-export function disableCheckingAbilityOfDiaryMenuCheckboxes() {
+function disableCheckingAbilityOfDiaryMenuCheckboxes() {
     const diaryTasksCheckboxes = document.querySelectorAll(
         '.diary-tasks input[type="checkbox"]',
     );
@@ -17,7 +19,7 @@ export function disableCheckingAbilityOfDiaryMenuCheckboxes() {
     });
 }
 
-export function handleOptionsMenuRangeValueDisplay() {
+function handleOptionsMenuRangeValueDisplay() {
     const ranges = document.querySelectorAll('input[type="range"]');
     const rangeValueTexts = document.querySelectorAll(
         'input[type="range"] + p.range-value',
@@ -35,7 +37,7 @@ export function handleOptionsMenuRangeValueDisplay() {
     });
 }
 
-export function handleOptionsMenuLanguageSelection() {
+function handleOptionsMenuLanguageSelection() {
     const languageLeftArrow = document.querySelector(
             ".options-menu__content__language__left-arrow",
         ),
@@ -72,6 +74,47 @@ export function handleOptionsMenuLanguageSelection() {
         }
 
         changeChoice(choiceIndex);
+    });
+}
+
+function handleTasksAndFindingsDisplay(tasks, findings) {
+    const diaryTasks = document.querySelector(".diary-menu__content__tasks"),
+        diaryFindings = document.querySelector(
+            ".diary-menu__content__findings ul",
+        );
+    tasks.forEach((task) => {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("diary-menu__content__tasks__task");
+        taskDiv.innerHTML = `
+            <input
+                type="checkbox"
+                name="test"
+                id="test"
+                disabled
+                ${task.completed && "checked"}
+            />
+            <label for="test">
+                <p>${task.name}</p>
+            </label>
+        `;
+        diaryTasks.append(taskDiv);
+    });
+
+    findings.forEach((finding) => {
+        const findingDiv = document.createElement("li");
+        findingDiv.textContent = `${finding}`;
+        diaryFindings.append(findingDiv);
+    });
+}
+
+function handleMoveButtonClick() {
+    const moveButton = document.querySelector(".move-button");
+
+    moveButton.addEventListener("click", () => {
+        const moveArrowImgs = document.querySelectorAll(".move-arrow");
+        moveArrowImgs.forEach((moveArrowImg) =>
+            moveArrowImg.classList.toggle("move-arrow--show"),
+        );
     });
 }
 
@@ -151,43 +194,12 @@ export function handleInvMenuItemsDisplay() {
     });
 }
 
-export function handleTasksAndFindingsDisplay(tasks, findings) {
-    const diaryTasks = document.querySelector(".diary-menu__content__tasks"),
-        diaryFindings = document.querySelector(
-            ".diary-menu__content__findings ul",
-        );
-    tasks.forEach((task) => {
-        const taskDiv = document.createElement("div");
-        taskDiv.classList.add("diary-menu__content__tasks__task");
-        taskDiv.innerHTML = `
-            <input
-                type="checkbox"
-                name="test"
-                id="test"
-                disabled
-                ${task.completed && "checked"}
-            />
-            <label for="test">
-                <p>${task.name}</p>
-            </label>
-        `;
-        diaryTasks.append(taskDiv);
-    });
-
-    findings.forEach((finding) => {
-        const findingDiv = document.createElement("li");
-        findingDiv.textContent = `${finding}`;
-        diaryFindings.append(findingDiv);
-    });
-}
-
-export function handleMoveButtonClick() {
-    const moveButton = document.querySelector(".move-button");
-
-    moveButton.addEventListener("click", () => {
-        const moveArrowImgs = document.querySelectorAll(".move-arrow");
-        moveArrowImgs.forEach((moveArrowImg) =>
-            moveArrowImg.classList.toggle("move-arrow--show"),
-        );
-    });
+export function initMenusHandler() {
+    handleMenuToggle();
+    disableCheckingAbilityOfDiaryMenuCheckboxes();
+    handleOptionsMenuRangeValueDisplay();
+    handleOptionsMenuLanguageSelection();
+    handleInvMenuItemsDisplay(getData("inventory"));
+    handleTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
+    handleMoveButtonClick();
 }
