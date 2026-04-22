@@ -1,6 +1,6 @@
-import { sceneItems } from "./dom";
-
 import { getData, setData } from "./data-handler";
+
+import { sceneItems } from "./dom";
 
 import { alertMessageShow } from "./utils";
 

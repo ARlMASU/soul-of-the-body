@@ -1,3 +1,10 @@
+import {
+    alertMessage,
+    alertMessageText,
+    locationNameWrapper,
+    locationNameText,
+} from "./dom";
+
 export function resizeApp(container, app) {
     // gets container width & height (variable)
     const containerWidth = container.clientWidth;
@@ -38,9 +45,6 @@ export function isEven(number) {
 }
 
 export function alertMessageShow(text) {
-    const alertMessage = document.querySelector(".alert-message"),
-        alertMessageText = document.querySelector(".alert-message p");
-
     alertMessageText.textContent = text;
 
     alertMessage.classList.remove("alert-message--hide");
@@ -52,11 +56,6 @@ export function alertMessageShow(text) {
 }
 
 export function showLocationName(locationName) {
-    const locationNameWrapper = document.querySelector(".scene__location-name"),
-        locationNameText = document.querySelector(
-            ".scene__location-name__text",
-        );
-
     const hideLocationNameWrapper = () => {
         locationNameWrapper.classList.remove("scene__location-name--show");
         locationNameWrapper.removeEventListener(

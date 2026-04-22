@@ -7,6 +7,13 @@
     user-select: none;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #151515;
+}
+
 button {
     padding: 0;
     border: none;
@@ -27,11 +34,4 @@ button {
         filter: invert(1);
         scale: 0.95;
     }
-}
-
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #151515;
 }

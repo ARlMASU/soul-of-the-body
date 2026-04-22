@@ -1,6 +1,6 @@
-import { backdrop, choicesWrapper } from "./dom";
-
 import { handlePlayerAction } from "./data-handler";
+
+import { backdrop, choicesWrapper } from "./dom";
 
 import { handleDialogue, closeDialogue } from "./dialogue-handler";
 

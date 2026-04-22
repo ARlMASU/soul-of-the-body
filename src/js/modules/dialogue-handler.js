@@ -1,3 +1,5 @@
+import data from "../../data/data";
+
 import {
     dialogue,
     dialogueName,
@@ -7,11 +9,9 @@ import {
     menus,
 } from "./dom";
 
-import { handleEventType } from "./event-handler";
-
 import { isEven } from "./utils";
 
-import data from "../../data/data";
+import { handleEventType } from "./event-handler";
 
 const story = data.story;
 const spritesForEachCharacter = data.spritesForEachCharacter;
