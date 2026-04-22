@@ -14,7 +14,7 @@ import { container, app, clearBtn } from "./modules/dom";
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 
-import { setDefaultData, clearDatas } from "./modules/data-handler";
+import { getData, setDefaultData, clearDatas } from "./modules/data-handler";
 
 import { resizeApp, makeImagesUndraggable } from "./modules/utils";
 
