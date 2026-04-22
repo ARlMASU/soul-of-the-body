@@ -1,10 +1,22 @@
-import { getData, setData } from "./data-handler";
+//============================//
+//  HTML DOM ELEMENTS IMPORT  //
+//============================//
 
 import { sceneItems } from "./dom";
+
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
+import { getData, setData } from "./data-handler";
 
 import { alertMessageShow } from "./utils";
 
 import { handleInvMenuItemsDisplay } from "./menus-handler";
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 export function addToInv(item, itemImg) {
     if (

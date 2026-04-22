@@ -1,3 +1,7 @@
+//=============//
+//  FUNCTIONS  //
+//=============//
+
 export function getData(name) {
     return JSON.parse(localStorage.getItem(name));
 }

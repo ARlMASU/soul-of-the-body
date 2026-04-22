@@ -1,8 +1,20 @@
-import { handlePlayerAction } from "./data-handler";
+//============================//
+//  HTML DOM ELEMENTS IMPORT  //
+//============================//
 
 import { backdrop, choicesWrapper } from "./dom";
 
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
+import { handlePlayerAction } from "./data-handler";
+
 import { handleDialogue, closeDialogue } from "./dialogue-handler";
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 function handleConsequences(consequences) {
     consequences.forEach((consequence) => {

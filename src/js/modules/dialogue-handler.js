@@ -1,4 +1,12 @@
+//===============//
+//  DATA IMPORT  //
+//===============//
+
 import data from "../../data/data";
+
+//============================//
+//  HTML DOM ELEMENTS IMPORT  //
+//============================//
 
 import {
     dialogue,
@@ -9,9 +17,17 @@ import {
     menus,
 } from "./dom";
 
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
 import { isEven } from "./utils";
 
 import { handleEventType } from "./event-handler";
+
+//=============//
+//  VARIABLES  //
+//=============//
 
 const story = data.story;
 const spritesForEachCharacter = data.spritesForEachCharacter;
@@ -20,6 +36,10 @@ let textBoxIndex = 0;
 let currentTextBoxes = [];
 let currentCharacters = [];
 let numberOfTextBoxes;
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 export function closeDialogue(transitionToChoice) {
     dialogue.classList.add("dialogue--hide");

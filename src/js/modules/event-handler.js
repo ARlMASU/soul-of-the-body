@@ -1,8 +1,16 @@
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
 import { handleDialogue } from "./dialogue-handler";
 
 import { handleChoice } from "./choice-handler";
 
 import { addToInv } from "./add-to-inv";
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 export function handleEventType(eventInfo) {
     switch (eventInfo.event.eventType) {

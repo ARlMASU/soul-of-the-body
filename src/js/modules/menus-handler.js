@@ -1,4 +1,12 @@
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
 import { getData } from "./data-handler";
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 function handleMenuToggle() {
     const menuToggleButton = document.querySelector(".menu__toggle-button"),

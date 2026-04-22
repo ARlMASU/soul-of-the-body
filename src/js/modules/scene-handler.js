@@ -1,6 +1,12 @@
+//===============//
+//  DATA IMPORT  //
+//===============//
+
 import data from "../../data/data";
 
-import { getData, setData } from "./data-handler";
+//============================//
+//  HTML DOM ELEMENTS IMPORT  //
+//============================//
 
 import {
     sceneBg,
@@ -10,11 +16,25 @@ import {
     sceneTransitionBlind,
 } from "./dom";
 
+//=============================//
+//  EXTERNAL FUNCTIONS IMPORT  //
+//=============================//
+
+import { getData, setData } from "./data-handler";
+
 import { showLocationName } from "./utils";
 
 import { handleEventType } from "./event-handler";
 
+//=============//
+//  VARIABLES  //
+//=============//
+
 const scenes = data.scenes;
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 function handleSceneObject(object, objectType) {
     const objectImg = document.createElement("img");

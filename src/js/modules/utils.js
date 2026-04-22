@@ -1,9 +1,17 @@
+//============================//
+//  HTML DOM ELEMENTS IMPORT  //
+//============================//
+
 import {
     alertMessage,
     alertMessageText,
     locationNameWrapper,
     locationNameText,
 } from "./dom";
+
+//=============//
+//  FUNCTIONS  //
+//=============//
 
 export function resizeApp(container, app) {
     // gets container width & height (variable)
