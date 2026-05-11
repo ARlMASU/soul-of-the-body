@@ -1,25 +1,41 @@
-.app {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    .bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 0;
-        scale: 1.25;
-        transform: translate(-1%, 0);
-    }
-    .logo {
-        z-index: 100;
-    }
-    .buttons {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        text-align: center;
-        gap: 2px;
+body.start-page {
+    .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        .app {
+            position: absolute;
+            width: 256px;
+            height: 192px;
+            overflow: hidden;
+            transform-origin: top left;
+            image-rendering: pixelated;
+            background: var(--color-4);
+
+            gap: 16px;
+            .bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 0;
+            }
+            .logo {
+                z-index: 100;
+                position: absolute;
+                left: 74px;
+                top: 63px;
+            }
+            .buttons {
+                position: absolute;
+                top: 140px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                text-align: center;
+            }
+        }
     }
 }
