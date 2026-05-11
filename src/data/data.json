@@ -180,7 +180,7 @@
                     "expression": "smiling",
                     "lines": [
                         "Yeah sorry, i'm just tired of being called the lorem ipsum guy, you know ?",
-                        "Like, i'm not only defined by that, i like video-games, music and stuff!",
+                        "Like, i'm not only defined by that, i like video-games, music and stuff...",
                         "i don't just say lorem ipsum blablabla all the time..."
                     ]
                 },
@@ -188,6 +188,16 @@
                     "characterSpeaking": 0,
                     "expression": "idle",
                     "lines": ["Yeah man, I get you."]
+                },
+                {
+                    "characterSpeaking": 1,
+                    "expression": "idle",
+                    "lines": [
+                        "...",
+                        "...",
+                        "...",
+                        "thanks for understanding me."
+                    ]
                 }
             ]
         },

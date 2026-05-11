@@ -49,34 +49,46 @@ const charactersToCompare = [".", ";", "!", "?"];
 
 function typeWriter(completeText) {
     let displayText = "";
+
+    let previousCharacter;
     let currentCharacter;
+    let nextCharacter;
+
     let displayTextCount = 0;
     let showNextCharacter;
 
     typing = false;
     skipDialogue = false;
 
+    const checkCharacter = (character) => {
+        return charactersToCompare.includes(character);
+    };
+
+    const setShowNextCharacter = (duration) => {
+        showNextCharacter = setTimeout(handleDisplayText, duration);
+    };
+
     const handleDisplayText = () => {
         displayText += completeText.charAt(displayTextCount);
+
+        previousCharacter = completeText.charAt(displayTextCount - 1);
         currentCharacter = completeText.charAt(displayTextCount);
+        nextCharacter = completeText.charAt(displayTextCount + 1);
+
         displayTextCount++;
         dialogueTextContent.textContent = displayText;
 
-        const nextCharacter = completeText.charAt(displayTextCount + 1);
-        const previousCharacter = completeText.charAt(displayTextCount - 1);
-
         if (currentCharacter === ",") {
-            showNextCharacter = setTimeout(handleDisplayText, 175);
-        } else if (charactersToCompare.includes(currentCharacter)) {
-            if (charactersToCompare.includes(nextCharacter)) {
-                showNextCharacter = setTimeout(handleDisplayText, 75);
-            } else {
-                showNextCharacter = setTimeout(handleDisplayText, 200);
-            }
-        } else if (charactersToCompare.includes(previousCharacter)) {
-            showNextCharacter = setTimeout(handleDisplayText, 250);
+            setShowNextCharacter(175);
+        } else if (currentCharacter === "." && nextCharacter === ".") {
+            setShowNextCharacter(200);
+        } else if (
+            !checkCharacter(currentCharacter) &&
+            checkCharacter(previousCharacter)
+        ) {
+            setShowNextCharacter(250);
         } else {
-            showNextCharacter = setTimeout(handleDisplayText, 27.5);
+            setShowNextCharacter(27.5);
         }
 
         if (displayText.length >= completeText.length) {
