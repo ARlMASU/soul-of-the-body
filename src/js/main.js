@@ -22,18 +22,20 @@ import { initMenusHandler } from "./modules/menus-handler";
 
 import { handleScene } from "./modules/scene-handler";
 
+import { handleModal } from "./modules/modal-handler";
+
 //=============//
 //  VARIABLES  //
 //=============//
 
 const defaultDatas = [
-    ["inventory", data.default.inventory],
-    ["tasks", data.default.tasks],
-    ["findings", data.default.findings],
-    ["playerActions", []],
-    ["objectsToHide", []],
-    ["currentSceneId", 1],
-    ["username", null],
+  ["inventory", data.default.inventory],
+  ["tasks", data.default.tasks],
+  ["findings", data.default.findings],
+  ["playerActions", []],
+  ["objectsToHide", []],
+  ["currentSceneId", 1],
+  ["username", null],
 ];
 
 //===============//
@@ -50,10 +52,13 @@ makeImagesUndraggable();
 clearBtn.addEventListener("click", () => clearDatas());
 
 defaultDatas.forEach((defaultData) => {
-    setDefaultData(defaultData[0], defaultData[1]);
+  setDefaultData(defaultData[0], defaultData[1]);
 });
 
 handleScene(getData("currentSceneId"));
 
 // from menusHandler
 initMenusHandler();
+
+// from modal-handler
+handleModal();

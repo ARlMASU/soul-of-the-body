@@ -135,7 +135,7 @@ export function handleInvMenuItemsDisplay() {
         ),
         descriptionBubbleText = descriptionBubble.querySelector("p");
 
-    function setDescriptionBubblePosition(event) {
+    const setDescriptionBubblePosition = (event) => {
         const appRect = app.getBoundingClientRect();
         const appWidth = appRect.width;
         const appHeight = appRect.height;
@@ -154,7 +154,7 @@ export function handleInvMenuItemsDisplay() {
 
         descriptionBubble.style.left = `${bubbleX}px`;
         descriptionBubble.style.top = `${bubbleY}px`;
-    }
+    };
 
     boxes.forEach((box, index) => {
         if (inventory[index].img) {

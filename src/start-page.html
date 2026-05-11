@@ -4,17 +4,16 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./sass/main.scss" />
-        <!-- <link rel="stylesheet" href="/css/pages/main-menu.scss" /> -->
         <title>Soul of the body</title>
     </head>
-    <body>
+    <body class="start-page">
         <div class="container">
             <div class="app">
-                <img
+                <!-- <img
                     src="../static/assets/images/menus/main-menu/bg.png"
                     alt=""
                     class="bg"
-                />
+                /> -->
                 <img
                     src="../static/assets/images/menus/main-menu/logo.gif"
                     alt=""
@@ -25,9 +24,16 @@
                     <a href=""><p>OPTIONS</p></a>
                     <a href=""><p>ACHIEVEMENTS</p></a>
                 </div>
+                <div class="modal">
+                    <div class="modal__backdrop"></div>
+                    <div class="modal__content-container">
+                        <div class="modal__content-container__menu"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <script src="./js/main.js" type="module"></script>
+        <script src="./js/pages/start-page.js" type="module"></script>
+        <script src="./js/partials/modal-handler.js"></script>
     </body>
 </html>

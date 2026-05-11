@@ -5,6 +5,8 @@
 @use "base/normalize";
 @use "base/typography";
 
+@use "pages/start-page";
+
 @use "partials/modal-menus/diary";
 @use "partials/modal-menus/inv";
 @use "partials/modal-menus/options";
@@ -14,128 +16,130 @@
 @use "partials/modal";
 @use "partials/scene";
 
-.container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+body.index {
+    .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
 
-    .app {
-        position: absolute;
-        width: 256px;
-        height: 192px;
-        overflow: hidden;
-        transform-origin: top left;
-        image-rendering: pixelated;
-        background: var(--color-4);
+        .app {
+            position: absolute;
+            width: 256px;
+            height: 192px;
+            overflow: hidden;
+            transform-origin: top left;
+            image-rendering: pixelated;
+            background: var(--color-4);
 
-        .backdrop {
-            @include abs;
-            @include fill;
-            @include hide;
+            .backdrop {
+                @include abs;
+                @include fill;
+                @include hide;
 
-            z-index: 200;
-            background: rgba(0, 0, 0, 0.25);
-            transition: opacity 0.2s ease;
-
-            &--show {
-                @include show;
-            }
-        }
-
-        .choices-wrapper {
-            @include fill;
-            @include abs;
-            @include flex;
-            @include hide;
-
-            z-index: 300;
-
-            gap: 4px;
-
-            &--show {
-                @include show;
-            }
-
-            .choice {
-                @include flex;
-
-                background: url("../../static/assets/images/menus/choices/choice-box.png");
-                width: 144px;
-                height: 41px;
-                cursor: pointer;
-                transition:
-                    transform 0.4s ease,
-                    scale 0.2s ease,
-                    filter 0.2s ease;
+                z-index: 200;
+                background: rgba(0, 0, 0, 0.25);
+                transition: opacity 0.2s ease;
 
                 &--show {
-                    transform: translateX(0%) !important;
-                }
-
-                &:hover {
-                    scale: 1.025;
-                }
-
-                &:active {
-                    scale: 0.95;
-                    filter: invert(1);
-                }
-
-                p {
-                    text-align: center;
-                }
-
-                &:nth-child(even) {
-                    transform: translateX(-150%);
-                }
-
-                &:nth-child(odd) {
-                    transform: translateX(150%);
+                    @include show;
                 }
             }
-        }
 
-        .scene-transition-blind {
-            @include fill;
-            @include hide;
+            .choices-wrapper {
+                @include fill;
+                @include abs;
+                @include flex;
+                @include hide;
 
-            position: absolute;
-            z-index: 50;
-            background: var(--color-1);
+                z-index: 300;
 
-            &--show {
-                animation: blindFadeIn 0.4s ease forwards;
-            }
+                gap: 4px;
 
-            &--hide {
-                animation: blindFadeOut 0.4s ease forwards;
-            }
-        }
-
-        .debugger {
-            @include abs;
-
-            z-index: 10000;
-            gap: 2px;
-            display: none;
-
-            button {
-                width: fit-content;
-                background: white;
-                transition: background 0.2s ease;
-
-                p {
-                    font-family: "silkscreen";
-                    font-size: 0.25rem;
-                    color: var(--color-0);
+                &--show {
+                    @include show;
                 }
 
-                &:hover {
-                    background: #d4d4d4;
+                .choice {
+                    @include flex;
+
+                    background: url("../../static/assets/images/menus/choices/choice-box.png");
+                    width: 144px;
+                    height: 41px;
+                    cursor: pointer;
+                    transition:
+                        transform 0.4s ease,
+                        scale 0.2s ease,
+                        filter 0.2s ease;
+
+                    &--show {
+                        transform: translateX(0%) !important;
+                    }
+
+                    &:hover {
+                        scale: 1.025;
+                    }
+
+                    &:active {
+                        scale: 0.95;
+                        filter: invert(1);
+                    }
+
+                    p {
+                        text-align: center;
+                    }
+
+                    &:nth-child(even) {
+                        transform: translateX(-150%);
+                    }
+
+                    &:nth-child(odd) {
+                        transform: translateX(150%);
+                    }
+                }
+            }
+
+            .scene-transition-blind {
+                @include fill;
+                @include hide;
+
+                position: absolute;
+                z-index: 50;
+                background: var(--color-1);
+
+                &--show {
+                    animation: blindFadeIn 0.4s ease forwards;
                 }
 
-                &:active {
-                    background: #b6b6b6;
+                &--hide {
+                    animation: blindFadeOut 0.4s ease forwards;
+                }
+            }
+
+            .debugger {
+                @include abs;
+
+                z-index: 10000;
+                gap: 2px;
+                display: none;
+
+                button {
+                    width: fit-content;
+                    background: white;
+                    transition: background 0.2s ease;
+
+                    p {
+                        font-family: "silkscreen";
+                        font-size: 0.25rem;
+                        color: var(--color-0);
+                    }
+
+                    &:hover {
+                        background: #d4d4d4;
+                    }
+
+                    &:active {
+                        background: #b6b6b6;
+                    }
                 }
             }
         }

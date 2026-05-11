@@ -73,6 +73,7 @@ function handleMoveArrow(moveArrow) {
     const moveArrowImg = document.createElement("img");
     moveArrowImg.classList.add("move-arrow");
     moveArrowImg.src = `${data.moveArrowImgPathBeginning}${moveArrow.shape}.png`;
+    moveArrowImg.draggable = false;
     switch (moveArrow.arrowType) {
         case "bottom":
             moveArrowImg.style.bottom = "3px";
