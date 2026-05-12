@@ -26,8 +26,8 @@ export const locationNameText       = document.querySelector(".scene__location-n
 export const alertMessage           = document.querySelector(".alert-message");
 export const alertMessageText       = document.querySelector(".alert-message p");
 
-export const menuButtons            = document.querySelectorAll(".menu__button");
+export const modalButtons           = document.querySelectorAll(".modal-button");
 export const modal                  = document.querySelector(".modal");
 export const modalBackdrop 			= document.querySelector(".modal__backdrop");
 export const modalMenus 			= document.querySelectorAll(".modal__content-container__menu");
-export const menuCloseButtons 		= document.querySelectorAll(".menu-close-button");
+export const modalCloseButtons 		= document.querySelectorAll(".modal-close-button");

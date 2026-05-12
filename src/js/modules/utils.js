@@ -68,7 +68,7 @@ export function showLocationName(locationName) {
         locationNameWrapper.classList.remove("scene__location-name--show");
         locationNameWrapper.removeEventListener(
             "animationend",
-            hideLocationNameWrapper,
+            hideLocationNameWrapper
         );
     };
 
@@ -76,7 +76,7 @@ export function showLocationName(locationName) {
     locationNameWrapper.classList.add("scene__location-name--show");
     locationNameWrapper.addEventListener(
         "animationend",
-        hideLocationNameWrapper,
+        hideLocationNameWrapper
     );
 }
 
@@ -85,10 +85,10 @@ export function changeSceneObjectsClickability(state) {
 
     const everySceneItems = document.querySelectorAll(".scene__items > *");
     const everySceneCharacters = document.querySelectorAll(
-        ".scene__characters > *",
+        ".scene__characters > *"
     );
     const everySceneMoveArrows = document.querySelectorAll(
-        ".scene__move-arrows > *",
+        ".scene__move-arrows > *"
     );
 
     const everySceneObjects = [
@@ -98,6 +98,6 @@ export function changeSceneObjectsClickability(state) {
     ];
 
     everySceneObjects.forEach(
-        (object) => (object.style.pointerEvents = `${styleState}`),
+        (object) => (object.style.pointerEvents = `${styleState}`)
     );
 }
