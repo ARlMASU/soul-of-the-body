@@ -42,6 +42,7 @@ body.index {
 
                 &--show {
                     @include show;
+                    cursor: pointer;
                 }
             }
 
@@ -62,9 +63,9 @@ body.index {
                 .choice {
                     @include flex;
 
-                    background: url("../../static/assets/images/menus/choices/choice-box.png");
+                    background: url("../../static/assets/images/menus/choices/choice-box.png") no-repeat;
                     width: 144px;
-                    height: 41px;
+                    height: 33px;
                     cursor: pointer;
                     transition:
                         transform 0.4s ease,

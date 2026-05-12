@@ -150,6 +150,15 @@
                             ]
                         },
                         {
+                            "name": "Dummy choice."
+                        },
+                        {
+                            "name": "Dummy choice."
+                        },
+                        {
+                            "name": "Dummy choice."
+                        },
+                        {
                             "name": "Leave the conversation",
                             "consequences": []
                         }

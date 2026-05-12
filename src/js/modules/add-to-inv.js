@@ -22,12 +22,12 @@ export function addToInv(item, itemImg) {
     if (
         !("require" in item) ||
         getData("playerActions").some(
-            (playerAction) => playerAction.playerActionId === item.require,
+            (playerAction) => playerAction.playerActionId === item.require
         )
     ) {
         let inventory = getData("inventory");
         const emptySlotIndex = inventory.findIndex(
-            (slot) => slot.name === "Empty",
+            (slot) => slot.name === "Empty"
         );
         if (emptySlotIndex && inventory[7].name !== "Empty") {
             alertMessageShow("Too many items.");
@@ -51,6 +51,6 @@ export function addToInv(item, itemImg) {
             });
         }
     } else {
-        alertMessageShow(`You can't pick up this ${item.name}`);
+        alertMessageShow(`You can't pick up the ${item.name}`);
     }
 }
