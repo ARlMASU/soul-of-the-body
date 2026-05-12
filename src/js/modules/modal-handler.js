@@ -3,11 +3,11 @@
 //============================//
 
 import {
-  menuButtons,
-  modal,
-  modalBackdrop,
-  modalMenus,
-  menuCloseButtons,
+    modalButtons,
+    modal,
+    modalBackdrop,
+    modalMenus,
+    modalCloseButtons,
 } from "./dom";
 
 //=============//
@@ -21,53 +21,57 @@ let selectedModalMenu = null;
 //=============//
 
 function openModal() {
-  modal.classList.add("modal--display"); // displays the modal on its own
-  selectedModalMenu?.classList.add("modal__content-container__menu--display"); // displays the selected menu inside the modal
+    modal.classList.add("modal--display"); // displays the modal on its own
+    selectedModalMenu?.classList.add("modal__content-container__menu--display"); // displays the selected menu inside the modal
 
-  setTimeout(() => {
-    // waits 15ms before showing the elements (otherwise, it wouldn't play the transitions)
-    modalBackdrop.classList.add("modal__backdrop--show"); // shows the backdrop (after displaying it)
-    selectedModalMenu?.classList.add("modal__content-container__menu--show"); // shows the selected menu (after displaying it)
-  }, 15);
+    setTimeout(() => {
+        // waits 15ms before showing the elements (otherwise, it wouldn't play the transitions)
+        modalBackdrop.classList.add("modal__backdrop--show"); // shows the backdrop (after displaying it)
+        selectedModalMenu?.classList.add(
+            "modal__content-container__menu--show"
+        ); // shows the selected menu (after displaying it)
+    }, 15);
 }
 
 function closeModal() {
-  modalBackdrop.classList.remove("modal__backdrop--show");
-  selectedModalMenu?.classList.remove("modal__content-container__menu--show");
-  selectedModalMenu?.classList.add("modal__content-container__menu--hide"); // hides the selected menu (with a transition)
+    modalBackdrop.classList.remove("modal__backdrop--show");
+    selectedModalMenu?.classList.remove("modal__content-container__menu--show");
+    selectedModalMenu?.classList.add("modal__content-container__menu--hide"); // hides the selected menu (with a transition)
 
-  setTimeout(() => {
-    // waits for the transition to play out before un-displaying it
-    selectedModalMenu?.classList.remove(
-      "modal__content-container__menu--display"
-    ); // un-displays the selected menu
-    modal.classList.remove("modal--display"); // un-displays the modal itself
-    selectedModalMenu?.classList.remove("modal__content-container__menu--hide");
-    selectedModalMenu = null;
-  }, 300);
+    setTimeout(() => {
+        // waits for the transition to play out before un-displaying it
+        selectedModalMenu?.classList.remove(
+            "modal__content-container__menu--display"
+        ); // un-displays the selected menu
+        modal.classList.remove("modal--display"); // un-displays the modal itself
+        selectedModalMenu?.classList.remove(
+            "modal__content-container__menu--hide"
+        );
+        selectedModalMenu = null;
+    }, 300);
 }
 
 function displayModalMenu(menuName) {
-  selectedModalMenu = Array.from(modalMenus).find((menu) =>
-    menu.classList.contains(`${menuName}-menu`)
-  ); // transforms the Node modalMenus to an Array, then tries to find the selected menu based on if it contains the corresponding className
+    selectedModalMenu = Array.from(modalMenus).find((menu) =>
+        menu.classList.contains(`${menuName}-menu`)
+    ); // transforms the Node modalMenus to an Array, then tries to find the selected menu based on if it contains the corresponding className
 
-  openModal();
+    openModal();
 }
 
-export function handleModal() {
-  menuButtons.forEach((menuButton) => {
-    const menuName = menuButton.className
-      .replace("menu__button", "")
-      .replace(" ", "")
-      .replace("button-", "");
+export function initModalHandler() {
+    modalButtons.forEach((modalButton) => {
+        const menuName = modalButton.className
+            .replace("modal-button", "")
+            .replace(" ", "")
+            .replace("button-", "");
 
-    menuButton.addEventListener("click", () => displayModalMenu(menuName));
-  });
+        modalButton.addEventListener("click", () => displayModalMenu(menuName));
+    });
 
-  modalBackdrop.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", closeModal);
 
-  menuCloseButtons.forEach((menuCloseButton) => {
-    menuCloseButton.addEventListener("click", closeModal);
-  });
+    modalCloseButtons.forEach((modalCloseButton) => {
+        modalCloseButton.addEventListener("click", closeModal);
+    });
 }

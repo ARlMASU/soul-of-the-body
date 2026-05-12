@@ -13,13 +13,13 @@ function handleMenuToggle() {
         menu = document.querySelector(".menu");
 
     menuToggleButton.addEventListener("click", () =>
-        menu.classList.toggle("menu--open"),
+        menu.classList.toggle("menu--open")
     );
 }
 
 function disableCheckingAbilityOfDiaryMenuCheckboxes() {
     const diaryTasksCheckboxes = document.querySelectorAll(
-        '.diary-tasks input[type="checkbox"]',
+        '.diary-tasks input[type="checkbox"]'
     );
 
     diaryTasksCheckboxes.forEach((diaryTasksCheckbox) => {
@@ -27,10 +27,10 @@ function disableCheckingAbilityOfDiaryMenuCheckboxes() {
     });
 }
 
-function handleOptionsMenuRangeValueDisplay() {
+export function handleOptionsMenuRangeValueDisplay() {
     const ranges = document.querySelectorAll('input[type="range"]');
     const rangeValueTexts = document.querySelectorAll(
-        'input[type="range"] + p.range-value',
+        'input[type="range"] + p.range-value'
     );
 
     function displayRangeValue(index) {
@@ -45,15 +45,15 @@ function handleOptionsMenuRangeValueDisplay() {
     });
 }
 
-function handleOptionsMenuLanguageSelection() {
+export function handleOptionsMenuLanguageSelection() {
     const languageLeftArrow = document.querySelector(
-            ".options-menu__content__language__left-arrow",
+            ".options-menu__content__language__left-arrow"
         ),
         languageRightArrow = document.querySelector(
-            ".options-menu__content__language__right-arrow",
+            ".options-menu__content__language__right-arrow"
         ),
         languageChoicesWrapper = document.querySelector(
-            ".options-menu__content__language__choices-wrapper__choices",
+            ".options-menu__content__language__choices-wrapper__choices"
         );
 
     let choiceIndex = 0;
@@ -88,7 +88,7 @@ function handleOptionsMenuLanguageSelection() {
 function handleTasksAndFindingsDisplay(tasks, findings) {
     const diaryTasks = document.querySelector(".diary-menu__content__tasks"),
         diaryFindings = document.querySelector(
-            ".diary-menu__content__findings ul",
+            ".diary-menu__content__findings ul"
         );
     tasks.forEach((task) => {
         const taskDiv = document.createElement("div");
@@ -121,7 +121,7 @@ function handleMoveButtonClick() {
     moveButton.addEventListener("click", () => {
         const moveArrowImgs = document.querySelectorAll(".move-arrow");
         moveArrowImgs.forEach((moveArrowImg) =>
-            moveArrowImg.classList.toggle("move-arrow--show"),
+            moveArrowImg.classList.toggle("move-arrow--show")
         );
     });
 }
@@ -131,7 +131,7 @@ export function handleInvMenuItemsDisplay() {
     const app = document.querySelector(".app"),
         boxes = document.querySelectorAll(".inv-menu__content__boxes__box"),
         descriptionBubble = document.querySelector(
-            ".inv-menu__content__description-bubble",
+            ".inv-menu__content__description-bubble"
         ),
         descriptionBubbleText = descriptionBubble.querySelector("p");
 
@@ -168,12 +168,12 @@ export function handleInvMenuItemsDisplay() {
             setDescriptionBubblePosition(event);
             descriptionBubbleText.textContent = `${inventory[index].name}`;
             descriptionBubble.classList.add(
-                "inv-menu__content__description-bubble--display",
+                "inv-menu__content__description-bubble--display"
             );
             window.addEventListener("click", (event) => {
                 if (event.target.contains(box) && event.target !== box) {
                     descriptionBubble.classList.remove(
-                        "inv-menu__content__description-bubble--display",
+                        "inv-menu__content__description-bubble--display"
                     );
                 }
             });
@@ -182,21 +182,21 @@ export function handleInvMenuItemsDisplay() {
         box.addEventListener("mouseenter", () => {
             document.addEventListener(
                 "mousemove",
-                setDescriptionBubblePosition,
+                setDescriptionBubblePosition
             );
             descriptionBubbleText.textContent = `${inventory[index].name}`;
             descriptionBubble.classList.add(
-                "inv-menu__content__description-bubble--display",
+                "inv-menu__content__description-bubble--display"
             );
         });
 
         box.addEventListener("mouseleave", () => {
             document.removeEventListener(
                 "mousemove",
-                setDescriptionBubblePosition,
+                setDescriptionBubblePosition
             );
             descriptionBubble.classList.remove(
-                "inv-menu__content__description-bubble--display",
+                "inv-menu__content__description-bubble--display"
             );
         });
     });

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -20,20 +20,125 @@
                     class="logo"
                 />
                 <div class="buttons">
-                    <a href="/"><p>PLAY</p></a>
-                    <a href=""><p>OPTIONS</p></a>
-                    <a href=""><p>ACHIEVEMENTS</p></a>
+                    <a href="/" draggable="false"><p>PLAY</p></a>
+                    <a class="modal-button button-options"><p>OPTIONS</p></a>
+                    <a class="modal-button button-achievements"
+                        ><p>ACHIEVEMENTS</p></a
+                    >
                 </div>
                 <div class="modal">
                     <div class="modal__backdrop"></div>
                     <div class="modal__content-container">
-                        <div class="modal__content-container__menu"></div>
+                        <div
+                            class="modal__content-container__menu options-menu"
+                        >
+                            <img
+                                class="options-menu__bg"
+                                src="../static/assets/images/menus/bg.png"
+                                alt="Options menu's background"
+                            />
+                            <button
+                                class="menu-close-button options-menu__close-button"
+                                title="Close"
+                            >
+                                <img
+                                    src="../static/assets/images/menus/close-button.png"
+                                    alt="Close button"
+                                />
+                            </button>
+
+                            <div class="options-menu__content">
+                                <h1 class="options-menu__content__title">
+                                    Options
+                                </h1>
+                                <div
+                                    class="options-menu__content__range options-menu__content__range--music"
+                                >
+                                    <label for="music">
+                                        <p>Music</p>
+                                    </label>
+                                    <input
+                                        type="range"
+                                        id="music"
+                                        min="0"
+                                        max="100"
+                                        step="10"
+                                        value="100"
+                                    />
+                                    <p class="range-value music"></p>
+                                </div>
+                                <div
+                                    class="options-menu__content__range options-menu__content__range--sfx"
+                                >
+                                    <label for="sfx">
+                                        <p>SFX</p>
+                                    </label>
+                                    <input
+                                        type="range"
+                                        id="sfx"
+                                        min="0"
+                                        max="100"
+                                        step="10"
+                                        value="100"
+                                    />
+                                    <p class="range-value sfx"></p>
+                                </div>
+                                <div class="options-menu__content__language">
+                                    <p>Language</p>
+                                    <div>
+                                        <button
+                                            class="options-menu__content__language__left-arrow"
+                                        >
+                                            <img
+                                                src="../static/assets/images/menus/options/select-arrow.png"
+                                                alt="Left arrow"
+                                            />
+                                        </button>
+                                        <div
+                                            class="options-menu__content__language__choices-wrapper"
+                                        >
+                                            <div
+                                                class="options-menu__content__language__choices-wrapper__choices"
+                                            >
+                                                <p>English</p>
+                                                <p>French</p>
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="options-menu__content__language__right-arrow"
+                                        >
+                                            <img
+                                                src="../static/assets/images/menus/options/select-arrow.png"
+                                                alt="Left arrow"
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="modal__content-container__menu achievements-menu"
+                        >
+                            <img
+                                class="options-menu__bg"
+                                src="../static/assets/images/menus/bg.png"
+                                alt="Options menu's background"
+                            />
+                            <button
+                                class="menu-close-button options-menu__close-button"
+                                title="Close"
+                            >
+                                <img
+                                    src="../static/assets/images/menus/close-button.png"
+                                    alt="Close button"
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <script src="./js/pages/start-page.js" type="module"></script>
-        <script src="./js/partials/modal-handler.js"></script>
     </body>
 </html>

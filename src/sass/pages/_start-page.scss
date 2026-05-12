@@ -3,6 +3,7 @@ body.start-page {
         position: relative;
         width: 100vw;
         height: 100vh;
+
         .app {
             position: absolute;
             width: 256px;
@@ -11,8 +12,8 @@ body.start-page {
             transform-origin: top left;
             image-rendering: pixelated;
             background: var(--color-4);
-
             gap: 16px;
+
             .bg {
                 position: absolute;
                 top: 0;
@@ -20,12 +21,14 @@ body.start-page {
                 width: 100%;
                 z-index: 0;
             }
+
             .logo {
                 z-index: 100;
                 position: absolute;
                 left: 74px;
                 top: 63px;
             }
+
             .buttons {
                 position: absolute;
                 top: 140px;
@@ -35,6 +38,27 @@ body.start-page {
                 flex-flow: column nowrap;
                 justify-content: center;
                 text-align: center;
+                gap: 2px;
+                a {
+                    cursor: pointer;
+                    &:hover{
+                        p{
+                            color: black;
+                            background-color: white;
+                        }
+                    }
+                    &:active{
+                        p{
+                            color: white;
+                            background-color: black;
+                        }
+                    }
+
+                    p{
+                        padding: 0 6px 1px 6px;
+                        transition: color .125s ease, background-color .125s ease;
+                    }
+                }
             }
         }
     }
