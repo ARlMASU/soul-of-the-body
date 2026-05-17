@@ -51,6 +51,10 @@ export function handleChoice(choices, isInsideOfDialogue) {
         const choiceDiv = document.createElement("div");
         choiceDiv.classList.add("choice");
 
+        const choiceBg = document.createElement("img");
+        choiceBg.src = "/assets/images/menus/choices/choice-box.png";
+        choiceBg.draggable = false;
+
         const choiceText = document.createElement("p");
         choiceText.textContent = choice.name;
 
@@ -63,7 +67,7 @@ export function handleChoice(choices, isInsideOfDialogue) {
             }
         });
 
-        choiceDiv.append(choiceText);
+        choiceDiv.append(choiceBg, choiceText);
         choicesWrapper.append(choiceDiv);
     });
 
