@@ -34,7 +34,7 @@ const defaultDatas = [
     ["findings", data.default.findings],
     ["playerActions", []],
     ["objectsToHide", []],
-    ["currentSceneId", 1],
+    ["currentSceneId", 0],
     ["username", null],
 ];
 

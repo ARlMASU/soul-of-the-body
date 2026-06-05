@@ -72,26 +72,17 @@ function handleSceneObject(object, objectType) {
 function handleMoveArrow(moveArrow) {
     const moveArrowImg = document.createElement("img");
     moveArrowImg.classList.add("move-arrow");
-    moveArrowImg.src = `${data.moveArrowImgPathBeginning}${moveArrow.shape}.png`;
+    moveArrowImg.src = `/assets/images/icons/move-arrows/arrow-${moveArrow.shape}.webp`;
     moveArrowImg.draggable = false;
-    switch (moveArrow.arrowType) {
-        case "bottom":
-            moveArrowImg.style.bottom = "3px";
-            moveArrowImg.style.left = "117px";
-            break;
-        case "left":
-            // to be determined
-            break;
-        case "right":
-            // to be determined
-            break;
-        case "custom":
-            moveArrowImg.style.top = `${moveArrow.y}px`;
-            moveArrowImg.style.left = `${moveArrow.x}px`;
-            break;
-        default:
-            console.log("Error, unvalid arrowType.");
+
+    if (moveArrow.shape === "default-bottom") {
+        moveArrowImg.style.bottom = "3px";
+        moveArrowImg.style.left = "117px";
+    } else {
+        moveArrowImg.style.top = `${moveArrow.y}px`;
+        moveArrowImg.style.left = `${moveArrow.x}px`;
     }
+
     moveArrowImg.addEventListener("click", () =>
         handleScene(moveArrow.goToSceneId),
     );
@@ -121,7 +112,7 @@ export function handleScene(sceneId) {
                     sceneBg.onerror = () =>
                         console.log("Error, can't load the image.");
 
-                    sceneBg.src = `/assets/images/backgrounds/${selectedScene.bg}`;
+                    sceneBg.src = `/assets/images/backgrounds/${selectedScene.bg}.webp`;
                     sceneBg.alt = selectedScene.name;
 
                     sceneItems.textContent = "";

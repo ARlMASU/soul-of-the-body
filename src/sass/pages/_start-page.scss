@@ -41,22 +41,25 @@ body.start-page {
                 gap: 2px;
                 a {
                     cursor: pointer;
-                    &:hover{
-                        p{
+
+                    &:hover {
+                        p {
                             color: black;
                             background-color: white;
                         }
                     }
-                    &:active{
-                        p{
+                    &:active {
+                        p {
                             color: white;
                             background-color: black;
                         }
                     }
 
-                    p{
+                    p {
                         padding: 0 6px 1px 6px;
-                        transition: color .125s ease, background-color .125s ease;
+                        transition:
+                            color 0.125s ease,
+                            background-color 0.125s ease;
                     }
                 }
             }

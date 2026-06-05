@@ -1,4 +1,6 @@
 {
+    "moveArrowImgPathBeginning": "/assets/images/icons/move-arrows/arrow-",
+
     "spritesForEachCharacter": [
         {
             "name": "You",
@@ -16,74 +18,110 @@
 
     "scenes": [
         {
-            "sceneId": 0,
+            "sceneId": 1,
+            "name": "Front of the Pyramid",
+            "biome": "desert",
+            "zone": "pyramid",
+            "position": "front",
+            "bg": "desert-pyramid-front.gif",
+            "items": [
+                {
+                    "name": "Bomb",
+                    "img": "bomb.png",
+                    "x": 24,
+                    "y": 103,
+                    "onClick": { "eventType": "addToInv" },
+                    "invUse": "showItem",
+                    "taken": false,
+                    "require": 0
+                }
+            ],
+            "characters": [
+                {
+                    "name": "Smiling guy",
+                    "img": "smiling-guy.png",
+                    "x": 200,
+                    "y": 87,
+                    "onClick": {
+                        "eventType": "dialogue",
+                        "dialogueId": 1
+                    }
+                }
+            ],
+            "movementArrows": [
+                {
+                    "arrowType": "bottom",
+                    "shape": "bottom",
+                    "goToSceneId": 2
+                },
+                {
+                    "arrowType": "custom",
+                    "shape": "top-right",
+                    "x": 161,
+                    "y": 111,
+                    "goToSceneId": 3
+                }
+            ]
+        },
+
+        {
+            "sceneId": 2,
+            "name": "Exit of Desert Village",
+            "biome": "desert",
+            "zone": "path",
+            "bg": "desert-path.png",
+            "items": [],
+            "characters": [
+                {
+                    "name": "Wally",
+                    "img": "wally.png",
+                    "x": 75,
+                    "y": 55,
+                    "onClick": {
+                        "eventType": "dialogue",
+                        "dialogueId": 0
+                    }
+                }
+            ],
+            "movementArrows": [
+                {
+                    "arrowType": "custom",
+                    "shape": "top-right",
+                    "x": 161,
+                    "y": 111,
+                    "goToSceneId": 1
+                },
+                {
+                    "arrowType": "custom",
+                    "shape": "top-left",
+                    "x": 71,
+                    "y": 111,
+                    "goToSceneId": 3
+                }
+            ]
+        },
+        {
+            "sceneId": 3,
             "name": "Plain Village's Port",
             "biome": "plain",
             "zone": "port",
-            "bg": "plain-village-port",
+            "bg": "plain_village_port.webp",
             "items": [],
             "characters": [],
             "movementArrows": [
                 {
-                    "shape": "right",
-                    "x": 234,
-                    "y": 112,
-                    "goToSceneId": 1
-                }
-            ]
-        },
-        {
-            "sceneId": 1,
-            "name": "Plain Village's Entrance",
-            "biome": "plain",
-            "zone": "village",
-            "bg": "plain-village-entrance",
-            "items": [],
-            "characters": [],
-            "movementArrows": [
-                {
-                    "shape": "default-bottom",
-                    "goToSceneId": 0
-                },
-                {
-                    "shape": "top",
-                    "x": 118,
-                    "y": 80,
-                    "goToSceneId": 2
-                }
-            ]
-        },
-        {
-            "sceneId": 2,
-            "name": "Plain Village's Crossroads",
-            "biome": "plain",
-            "zone": "village",
-            "bg": "plain-village-crossroads",
-
-            "items": [],
-            "characters": [],
-            "movementArrows": [
-                {
-                    "shape": "default-bottom",
-                    "goToSceneId": 1
-                },
-                {
-                    "shape": "top-left",
-                    "x": 103,
-                    "y": 108,
-                    "goToSceneId": 3
-                },
-                {
-                    "shape": "left",
-                    "x": 6,
-                    "y": 120,
-                    "goToSceneId": 4
-                },
-                {
+                    "arrowType": "custom",
                     "shape": "top-right",
-                    "x": 170,
-                    "y": 85,
-                    "goToSceneId": 5
+                    "x": 161,
+                    "y": 111,
+                    "goToSceneId": 1
+                },
+                {
+                    "arrowType": "custom",
+                    "shape": "top-left",
+                    "x": 71,
+                    "y": 111,
+                    "goToSceneId": 3
                 }
             ]
         }
