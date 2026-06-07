@@ -1,7 +1,6 @@
-import { resizeApp, makeImagesUndraggable } from "./modules/utils.js";
+import { resizeApp, makeImagesUndraggable } from "./modules/utils";
 
-const container = document.querySelector(".container"),
-    app = document.querySelector(".app");
+import { container, app } from "./dom";
 
 // from utils.js
 window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window

@@ -1,0 +1,86 @@
+[
+    {
+        "sceneId": 0,
+        "name": "",
+        "biome": "",
+        "zone": "",
+        "bg": "",
+        "items": [],
+        "characters": [],
+        "movementArrows": [
+            {
+                "shape": "",
+                "x": 0,
+                "y": 0,
+                "goToSceneId": 0
+            }
+        ]
+    },
+    {
+        "items": {
+            "name": "",
+            "img": "",
+            "x": 0,
+            "y": 0,
+            "onClick": { "eventType": "addToInv" },
+            "invUse": "showItem",
+            "taken": false,
+            "require": 0
+        },
+        "characters": {
+            "name": "0",
+            "img": "0",
+            "x": 0,
+            "y": 0,
+            "onClick": {
+                "eventType": "dialogue",
+                "dialogueId": 0
+            }
+        }
+    },
+    {
+        "dialogueId": 0,
+        "characters": ["", ""],
+        "textBoxes": [
+            {
+                "characterSpeaking": 0,
+                "expression": "",
+                "lines": ["", ""]
+            }
+        ]
+    },
+    {
+        "dialogueId": 0,
+        "characters": ["", ""],
+        "textBoxes": [
+            {
+                "characterSpeaking": 0,
+                "expression": "",
+                "lines": ["", ""]
+            },
+            {
+                "eventType": "choice",
+                "choices": [
+                    {
+                        "name": "",
+                        "consequences": [
+                            {
+                                "consequenceType": "playerAction",
+                                "playerActionId": 0,
+                                "name": ""
+                            },
+                            {
+                                "consequenceType": "dialogue",
+                                "dialogueId": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Leave the conversation",
+                        "consequences": []
+                    }
+                ]
+            }
+        ]
+    }
+]

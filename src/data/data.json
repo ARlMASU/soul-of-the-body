@@ -11,6 +11,10 @@
         {
             "name": "Wally",
             "dialogueVersion": "wally.png"
+        },
+        {
+            "name": "Narrator",
+            "dialogueVersion": ""
         }
     ],
 
@@ -22,7 +26,20 @@
             "zone": "port",
             "bg": "plain-village-port",
             "items": [],
-            "characters": [],
+            "characters": [
+                {
+                    "name": "Boat",
+                    "img": "",
+                    "x": 4,
+                    "y": 78,
+                    "w": 41,
+                    "h": 47,
+                    "onClick": {
+                        "eventType": "dialogue",
+                        "dialogueId": 0
+                    }
+                }
+            ],
             "movementArrows": [
                 {
                     "shape": "right",
@@ -92,125 +109,12 @@
     "story": [
         {
             "dialogueId": 0,
-            "characters": ["You", "Wally"],
+            "characters": ["Narrator"],
             "textBoxes": [
                 {
-                    "characterSpeaking": 1,
-                    "expression": "smiling",
-                    "lines": [
-                        "HIIII!!!!! I'M WALLYYYYYY.",
-                        "i'm a wall HAHAHAHAHAAHHAHA."
-                    ]
-                },
-                {
                     "characterSpeaking": 0,
-                    "expression": "idle",
-                    "lines": ["O-Okay??"]
-                },
-                {
-                    "characterSpeaking": 1,
-                    "expression": "smiling",
-                    "lines": [
-                        "WALLYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY!"
-                    ]
-                },
-                {
-                    "characterSpeaking": 0,
-                    "expression": "idle",
-                    "lines": ["Yep, that's your name."]
-                },
-                {
-                    "eventType": "choice",
-                    "choices": [
-                        {
-                            "name": "\"That's super cool!\"",
-                            "consequences": [
-                                {
-                                    "consequenceType": "playerAction",
-                                    "playerActionId": 0,
-                                    "name": "Told Wally that he was super cool."
-                                },
-                                {
-                                    "consequenceType": "dialogue",
-                                    "dialogueId": 2
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Dummy choice."
-                        },
-                        {
-                            "name": "Dummy choice."
-                        },
-                        {
-                            "name": "Dummy choice."
-                        },
-                        {
-                            "name": "Leave the conversation",
-                            "consequences": []
-                        }
-                    ]
-                }
-            ]
-        },
-
-        {
-            "dialogueId": 1,
-            "characters": ["You", "Smiling guy"],
-            "textBoxes": [
-                {
-                    "characterSpeaking": 1,
-                    "expression": "smiling",
-                    "lines": [
-                        "Hi you.",
-                        "Lorem ipsum etc man i don't even care at this point."
-                    ]
-                },
-                {
-                    "characterSpeaking": 0,
-                    "expression": "idle",
-                    "lines": ["Woah man, calm down."]
-                },
-                {
-                    "characterSpeaking": 1,
-                    "expression": "smiling",
-                    "lines": [
-                        "Yeah sorry, i'm just tired of being called the lorem ipsum guy, you know ?",
-                        "Like, i'm not only defined by that, i like video-games, music and stuff...",
-                        "i don't just say lorem ipsum blablabla all the time..."
-                    ]
-                },
-                {
-                    "characterSpeaking": 0,
-                    "expression": "idle",
-                    "lines": ["Yeah man, I get you."]
-                },
-                {
-                    "characterSpeaking": 1,
-                    "expression": "idle",
-                    "lines": [
-                        "...",
-                        "...",
-                        "...",
-                        "thanks for understanding me."
-                    ]
-                }
-            ]
-        },
-
-        {
-            "dialogueId": 2,
-            "characters": ["You", "Wally"],
-            "textBoxes": [
-                {
-                    "characterSpeaking": 1,
-                    "expression": "smiling",
-                    "lines": ["REAALLYYYY????", "THANKS MAN!!!!!!!"]
-                },
-                {
-                    "characterSpeaking": 0,
-                    "expression": "idle",
-                    "lines": ["No problem."]
+                    "expression": "",
+                    "lines": ["A boat."]
                 }
             ]
         }

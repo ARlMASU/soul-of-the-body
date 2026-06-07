@@ -64,19 +64,17 @@ export function alertMessageShow(text) {
 }
 
 export function showLocationName(locationName) {
-    const hideLocationNameWrapper = () => {
-        locationNameWrapper.classList.remove("scene__location-name--show");
-        locationNameWrapper.removeEventListener(
-            "animationend",
-            hideLocationNameWrapper
-        );
-    };
+    locationNameWrapper.classList.remove("scene__location-name--show"); // removes the class before re-adding it to retriger the animation
+    locationNameWrapper.offsetWidth; // forces reflow of DOM on the locationNameWrapper element, which forces the stop of the animation
 
     locationNameText.textContent = locationName;
     locationNameWrapper.classList.add("scene__location-name--show");
     locationNameWrapper.addEventListener(
         "animationend",
-        hideLocationNameWrapper
+        () => {
+            locationNameWrapper.classList.remove("scene__location-name--show");
+        },
+        { once: true }, // after the first trigger of the listener, removes the listener automatically
     );
 }
 
@@ -85,10 +83,10 @@ export function changeSceneObjectsClickability(state) {
 
     const everySceneItems = document.querySelectorAll(".scene__items > *");
     const everySceneCharacters = document.querySelectorAll(
-        ".scene__characters > *"
+        ".scene__characters > *",
     );
     const everySceneMoveArrows = document.querySelectorAll(
-        ".scene__move-arrows > *"
+        ".scene__move-arrows > *",
     );
 
     const everySceneObjects = [
@@ -98,6 +96,6 @@ export function changeSceneObjectsClickability(state) {
     ];
 
     everySceneObjects.forEach(
-        (object) => (object.style.pointerEvents = `${styleState}`)
+        (object) => (object.style.pointerEvents = `${styleState}`),
     );
 }

@@ -25,7 +25,7 @@
         pointer-events: auto;
     }
 
-    .menu {
+    .menu-bar {
         position: absolute;
         bottom: -38px;
         width: 100%;
@@ -96,7 +96,9 @@
 
 .map-menu {
     &__map {
-        @include abs;
+        position: absolute;
+        top: 12px;
+        left: 5px;
     }
 }
 

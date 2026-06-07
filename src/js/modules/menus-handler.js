@@ -9,17 +9,19 @@ import { getData } from "./data-handler";
 //=============//
 
 function handleMenuToggle() {
-    const menuToggleButton = document.querySelector(".menu__toggle-button"),
-        menu = document.querySelector(".menu");
+    const menuBarToggleButton = document.querySelector(
+            ".menu-bar__toggle-button",
+        ),
+        menuBar = document.querySelector(".menu-bar");
 
-    menuToggleButton.addEventListener("click", () =>
-        menu.classList.toggle("menu--open")
+    menuBarToggleButton.addEventListener("click", () =>
+        menuBar.classList.toggle("menu-bar--open"),
     );
 }
 
 function disableCheckingAbilityOfDiaryMenuCheckboxes() {
     const diaryTasksCheckboxes = document.querySelectorAll(
-        '.diary-tasks input[type="checkbox"]'
+        '.diary-tasks input[type="checkbox"]',
     );
 
     diaryTasksCheckboxes.forEach((diaryTasksCheckbox) => {
@@ -28,10 +30,10 @@ function disableCheckingAbilityOfDiaryMenuCheckboxes() {
 }
 
 export function handleOptionsMenuRangeValueDisplay() {
-    const ranges = document.querySelectorAll('input[type="range"]');
-    const rangeValueTexts = document.querySelectorAll(
-        'input[type="range"] + p.range-value'
-    );
+    const ranges = document.querySelectorAll('input[type="range"]'),
+        rangeValueTexts = document.querySelectorAll(
+            'input[type="range"] + p.range-value',
+        );
 
     function displayRangeValue(index) {
         rangeValueTexts[index].textContent = ranges[index].value;
@@ -47,13 +49,13 @@ export function handleOptionsMenuRangeValueDisplay() {
 
 export function handleOptionsMenuLanguageSelection() {
     const languageLeftArrow = document.querySelector(
-            ".options-menu__content__language__left-arrow"
+            ".options-menu__content__language__left-arrow",
         ),
         languageRightArrow = document.querySelector(
-            ".options-menu__content__language__right-arrow"
+            ".options-menu__content__language__right-arrow",
         ),
         languageChoicesWrapper = document.querySelector(
-            ".options-menu__content__language__choices-wrapper__choices"
+            ".options-menu__content__language__choices-wrapper__choices",
         );
 
     let choiceIndex = 0;
@@ -88,7 +90,7 @@ export function handleOptionsMenuLanguageSelection() {
 function handleTasksAndFindingsDisplay(tasks, findings) {
     const diaryTasks = document.querySelector(".diary-menu__content__tasks"),
         diaryFindings = document.querySelector(
-            ".diary-menu__content__findings ul"
+            ".diary-menu__content__findings ul",
         );
     tasks.forEach((task) => {
         const taskDiv = document.createElement("div");
@@ -121,17 +123,17 @@ function handleMoveButtonClick() {
     moveButton.addEventListener("click", () => {
         const moveArrowImgs = document.querySelectorAll(".move-arrow");
         moveArrowImgs.forEach((moveArrowImg) =>
-            moveArrowImg.classList.toggle("move-arrow--show")
+            moveArrowImg.classList.toggle("move-arrow--show"),
         );
     });
 }
 
 export function handleInvMenuItemsDisplay() {
-    const inventory = JSON.parse(localStorage.getItem("inventory"));
-    const app = document.querySelector(".app"),
+    const inventory = JSON.parse(localStorage.getItem("inventory")),
+        app = document.querySelector(".app"),
         boxes = document.querySelectorAll(".inv-menu__content__boxes__box"),
         descriptionBubble = document.querySelector(
-            ".inv-menu__content__description-bubble"
+            ".inv-menu__content__description-bubble",
         ),
         descriptionBubbleText = descriptionBubble.querySelector("p");
 
@@ -168,12 +170,12 @@ export function handleInvMenuItemsDisplay() {
             setDescriptionBubblePosition(event);
             descriptionBubbleText.textContent = `${inventory[index].name}`;
             descriptionBubble.classList.add(
-                "inv-menu__content__description-bubble--display"
+                "inv-menu__content__description-bubble--display",
             );
             window.addEventListener("click", (event) => {
                 if (event.target.contains(box) && event.target !== box) {
                     descriptionBubble.classList.remove(
-                        "inv-menu__content__description-bubble--display"
+                        "inv-menu__content__description-bubble--display",
                     );
                 }
             });
@@ -182,21 +184,21 @@ export function handleInvMenuItemsDisplay() {
         box.addEventListener("mouseenter", () => {
             document.addEventListener(
                 "mousemove",
-                setDescriptionBubblePosition
+                setDescriptionBubblePosition,
             );
             descriptionBubbleText.textContent = `${inventory[index].name}`;
             descriptionBubble.classList.add(
-                "inv-menu__content__description-bubble--display"
+                "inv-menu__content__description-bubble--display",
             );
         });
 
         box.addEventListener("mouseleave", () => {
             document.removeEventListener(
                 "mousemove",
-                setDescriptionBubblePosition
+                setDescriptionBubblePosition,
             );
             descriptionBubble.classList.remove(
-                "inv-menu__content__description-bubble--display"
+                "inv-menu__content__description-bubble--display",
             );
         });
     });

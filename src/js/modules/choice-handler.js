@@ -61,7 +61,8 @@ export function handleChoice(choices, isInsideOfDialogue) {
         choiceDiv.addEventListener("click", () => {
             closeChoicesWrapper();
             if (choice.consequences.length === 0) {
-                backdrop.classList.remove("backdrop--show");
+                // if no consequence
+                backdrop.classList.remove("backdrop--show"); //
             } else {
                 handleConsequences(choice.consequences);
             }

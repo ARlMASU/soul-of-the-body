@@ -42,8 +42,18 @@ function handleSceneObject(object, objectType) {
     objectImg.classList.add(`${objectType}`);
 
     objectImg.draggable = false;
-    objectImg.src = `/assets/images/${objectType}s/${object.img}`;
-    objectImg.alt = object.name;
+    if (object.img === "") {
+        objectImg.width = object.w;
+        objectImg.height = object.h;
+        objectImg.alt = " ";
+
+        objectImg.style.border = "solid .5px red";
+        objectImg.style.background = "rgba(255, 0, 0, .25)";
+    } else {
+        objectImg.src = `/assets/images/${objectType}s/${object.img}`;
+        objectImg.alt = object.name;
+    }
+
     objectImg.title = object.name;
     objectImg.style.top = `${object.y}px`;
     objectImg.style.left = `${object.x}px`;
@@ -106,7 +116,6 @@ export function handleScene(sceneId) {
                         sceneTransitionBlind.classList.add(
                             "scene-transition-blind--hide",
                         );
-
                         showLocationName(selectedScene.name);
                     };
                     sceneBg.onerror = () =>

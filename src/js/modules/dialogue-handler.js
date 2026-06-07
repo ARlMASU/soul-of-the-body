@@ -176,7 +176,11 @@ export function showDialogue(textBox) {
                     character.name ===
                     currentCharacters[textBox.characterSpeaking],
             );
-            dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichCharacterSpriteToShow.dialogueVersion}`;
+            console.log(whichCharacterSpriteToShow);
+
+            if (whichCharacterSpriteToShow) {
+                dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichCharacterSpriteToShow.dialogueVersion}`;
+            }
 
             textBoxIndex++;
         }
