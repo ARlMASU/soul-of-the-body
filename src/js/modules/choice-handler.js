@@ -33,7 +33,7 @@ export function handleChoice(choices, isInsideOfDialogue) {
         choiceDiv.classList.add("choice");
 
         const choiceBg = document.createElement("img"); // create a background for the choiceBox
-        choiceBg.src = "/assets/images/menus/choices/choice-box.webp";
+        choiceBg.src = "/assets/images/ui/choices/choice-box.webp";
         choiceBg.draggable = false;
 
         const choiceText = document.createElement("p"); // create and add choice's text
