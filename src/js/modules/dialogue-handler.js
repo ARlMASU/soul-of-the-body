@@ -9,11 +9,11 @@ import data from "../../data/data";
 //============================//
 
 import {
+    backdrop,
     dialogue,
+    dialogueCharacterImg,
     dialogueName,
     dialogueTextContent,
-    dialogueCharacterImg,
-    backdrop,
     menus,
 } from "./dom";
 
@@ -116,7 +116,7 @@ function typeWriter(completeText) {
     handleDisplayText();
 }
 
-export function closeDialogue(transitionToChoice) {
+function closeDialogue(transitionToChoice) {
     dialogue.removeEventListener("click", onDialogueClick);
     backdrop.removeEventListener("click", onDialogueClick);
     window.removeEventListener("keydown", onDialogueKeyPress);
@@ -145,41 +145,57 @@ export function closeDialogue(transitionToChoice) {
 }
 
 export function showDialogue(textBox) {
-    if (textBox && textBox.eventType === "choice") {
+    if (textBox && textBox?.eventType) {
+        // if the textBox contains an eventType (which means it's not lines of the dialogue)
         const eventInfo = {
             event: textBox,
             isInsideOfDialogue: true,
         };
 
+        if (textBox.eventType === "choice") {
+            // if it's a choice,
+            closeDialogue(true); // close the dialogue without removing the backdrop (to transition smoothly into the choice selection screen)
+        }
+
         handleEventType(eventInfo);
     } else {
         if (textBoxIndex > numberOfTextBoxes - 1) {
+            // if we've reached the end of the dialogue,
             closeDialogue(false);
         } else {
-            dialogueCharacterImg.src = "";
+            dialogueCharacterImg.src = ""; // reset character's image/sprite
+            dialogue.classList.remove("dialogue--no-speaker");
 
-            // dialogue direction
-            if (isEven(textBox.characterSpeaking) === true) {
-                dialogue.classList.remove("dialogue--right");
-                dialogue.classList.add("dialogue--left");
+            if (textBoxIndex === 0) {
+                setTimeout(() => typeWriter(textBox.lines.join("\n")), 250); // wait for the end of the entry transition before showing the text
             } else {
-                dialogue.classList.remove("dialogue--left");
-                dialogue.classList.add("dialogue--right");
+                typeWriter(textBox.lines.join("\n")); // merge the different lines with a linebreak between them
             }
 
-            typeWriter(textBox.lines.join("\n"));
-            dialogueName.textContent =
-                currentCharacters[textBox.characterSpeaking];
-
-            const whichCharacterSpriteToShow = spritesForEachCharacter.find(
+            const whichSpriteToShow = spritesForEachCharacter.find(
                 (character) =>
                     character.name ===
-                    currentCharacters[textBox.characterSpeaking],
+                    currentCharacters[textBox.characterSpeaking], // return the name of the character speaking
             );
-            console.log(whichCharacterSpriteToShow);
 
-            if (whichCharacterSpriteToShow) {
-                dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichCharacterSpriteToShow.dialogueVersion}`;
+            if (whichSpriteToShow && whichSpriteToShow?.dialogueVersion) {
+                // if we found a match for the character AND this character has a sprite,
+                dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichSpriteToShow.dialogueVersion}`; // show it
+
+                dialogueName.textContent =
+                    currentCharacters[textBox.characterSpeaking]; // return the name of the character speaking
+
+                // dialogue direction
+                if (isEven(textBox.characterSpeaking) === true) {
+                    dialogue.classList.remove("dialogue--right");
+                    dialogue.classList.add("dialogue--left");
+                } else {
+                    dialogue.classList.remove("dialogue--left");
+                    dialogue.classList.add("dialogue--right");
+                }
+            } else {
+                // change the dialogue box to the no-speaker version
+                dialogue.classList.add("dialogue--no-speaker");
             }
 
             textBoxIndex++;

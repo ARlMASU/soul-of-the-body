@@ -9,6 +9,7 @@
     <body class="index">
         <div class="container">
             <div class="app">
+                <!--======== SCENE ========-->
                 <div class="scene">
                     <img class="scene__bg" />
                     <div class="scene__items"></div>
@@ -18,14 +19,24 @@
                         <p class="scene__location-name__text"></p>
                     </div>
                 </div>
+
+                <!--======== BACKDROP ========-->
                 <div class="backdrop"></div>
+
+                <!--======== DIALOGUE ========-->
                 <div class="dialogue">
                     <img class="dialogue__character-img" />
+
                     <div class="dialogue__content">
                         <img
                             src="../static/assets/images/ui/dialogue/dialogue-box.webp"
                             alt=""
                             class="dialogue__content__box"
+                        />
+                        <img
+                            src="../static/assets/images/ui/dialogue/dialogue-box-no-speaker.webp"
+                            alt=""
+                            class="dialogue__content__box-no-speaker"
                         />
                         <p class="dialogue__content__name"></p>
                         <p class="dialogue__content__text-content"></p>
@@ -36,21 +47,33 @@
                         />
                     </div>
                 </div>
+
+                <!--======== CHOICES ========-->
                 <div class="choices-wrapper"></div>
+
+                <!--======== SCENE-TRANSITION-BLIND ========-->
                 <div class="scene-transition-blind"></div>
+
+                <!--======== MENUS ========-->
                 <div class="menus">
+                    <!-------- MOVE-BUTTON -------->
                     <button class="move-button" title="Move">
                         <img
                             src="../static/assets/images/ui/move/move-button.webp"
                             alt=""
                         />
                     </button>
+
+                    <!-------- MENU-BAR -------->
                     <nav class="menu-bar">
+                        <!--:::: BG ::::-->
                         <img
                             class="menu-bar__bg"
                             src="../static/assets/images/ui/menu-bar/menu-bar.webp"
                             alt=""
                         />
+
+                        <!--:::: TOGGLE-BUTTON ::::-->
                         <button class="menu-bar__toggle-button">
                             <img
                                 src="../static/assets/images/ui/menu-bar/close-button.webp"
@@ -58,6 +81,8 @@
                                 title="Close"
                             />
                         </button>
+
+                        <!--:::: BUTTONS ::::-->
                         <div class="menu-bar__buttons-wrapper">
                             <button
                                 class="modal-button button-diary"
@@ -94,6 +119,8 @@
                             </button>
                         </div>
                     </nav>
+
+                    <!-------- ALERT-MESSAGE -------->
                     <div class="alert-message">
                         <img
                             src="../static/assets/images/ui/alert-message/alert-message-box.webp"
@@ -102,9 +129,12 @@
                         <p>Alert</p>
                     </div>
                 </div>
+
+                <!--======== MODAL ========-->
                 <div class="modal">
                     <div class="modal__backdrop"></div>
                     <div class="modal__content-container">
+                        <!--:::: DIARY ::::-->
                         <div class="modal__content-container__menu diary-menu">
                             <img
                                 src="../static/assets/images/ui/modal-menus/diary/diary-bg.webp"
@@ -121,6 +151,8 @@
                                 title="Close"
                             ></button>
                         </div>
+
+                        <!--:::: INVENTORY ::::-->
                         <div class="modal__content-container__menu inv-menu">
                             <img
                                 class="options-menu__bg"
@@ -177,6 +209,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--:::: MAP ::::-->
                         <div class="modal__content-container__menu map-menu">
                             <img
                                 class="map-menu__bg"
@@ -198,6 +232,8 @@
                                 />
                             </button>
                         </div>
+
+                        <!--:::: OPTIONS ::::-->
                         <div
                             class="modal__content-container__menu options-menu"
                         >
@@ -287,6 +323,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--======== DEBUGGER ========-->
                 <div class="debugger">
                     <button
                         onclick="

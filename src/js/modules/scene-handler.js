@@ -42,7 +42,8 @@ function handleSceneObject(object, objectType) {
     objectImg.classList.add(`${objectType}`);
 
     objectImg.draggable = false;
-    if (object.img === "") {
+
+    if (!object.img) {
         objectImg.width = object.w;
         objectImg.height = object.h;
         objectImg.alt = " ";

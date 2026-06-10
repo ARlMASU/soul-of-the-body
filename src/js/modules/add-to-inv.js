@@ -12,7 +12,7 @@ import { getData, setData } from "./data-handler";
 
 import { alertMessageShow } from "./utils";
 
-import { handleInvMenuItemsDisplay } from "./menus-handler";
+import { handleInvMenuItemsDisplay } from "./modal-menus-handler";
 
 //=============//
 //  FUNCTIONS  //
@@ -22,12 +22,12 @@ export function addToInv(item, itemImg) {
     if (
         !("require" in item) ||
         getData("playerActions").some(
-            (playerAction) => playerAction.playerActionId === item.require
+            (playerAction) => playerAction.playerActionId === item.require,
         )
     ) {
         let inventory = getData("inventory");
         const emptySlotIndex = inventory.findIndex(
-            (slot) => slot.name === "Empty"
+            (slot) => slot.name === "Empty",
         );
         if (emptySlotIndex && inventory[7].name !== "Empty") {
             alertMessageShow("Too many items.");

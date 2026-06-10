@@ -21,16 +21,18 @@ export function clearDatas() {
     location.reload();
 }
 
-export function handlePlayerAction(consequence) {
-    const playerActions = getData("playerActions");
+export function handlePlayerAction(event) {
+    const playerActions = getData("playerActions"); // import the current playerActions
     if (
+        // if the current playerActions don't contain the new playerAction
         !playerActions?.some(
             (playerAction) =>
-                playerAction.playerActionId === consequence.playerActionId,
+                playerAction.playerActionId === event.playerActionId,
         )
     ) {
-        delete consequence.consequenceType;
-        playerActions.push(consequence);
-        setData("playerActions", playerActions);
+        // then,
+        delete event.eventType; // remove the unnecessary eventType key-value pair
+        playerActions.push(event); // add the new and cleaned playerAction to the playerActions
+        setData("playerActions", playerActions); // save the updated playerActions in localStorage
     }
 }

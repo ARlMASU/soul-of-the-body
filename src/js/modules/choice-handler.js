@@ -8,63 +8,51 @@ import { backdrop, choicesWrapper } from "./dom";
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 
-import { handlePlayerAction } from "./data-handler";
-
-import { handleDialogue, closeDialogue } from "./dialogue-handler";
+import { handleDialogue } from "./dialogue-handler";
+import { handleEventType } from "./event-handler";
 
 //=============//
 //  FUNCTIONS  //
 //=============//
 
-function handleConsequences(consequences) {
-    consequences.forEach((consequence) => {
-        switch (consequence.consequenceType) {
-            case "dialogue":
-                handleDialogue(consequence.dialogueId);
-                break;
-
-            case "playerAction":
-                handlePlayerAction(consequence);
-                break;
-
-            default:
-                console.log("Error, unvalid consequence.");
-                break;
-        }
-    });
-}
-
-function closeChoicesWrapper(transitionToDialogue) {
-    const choiceBoxes = document.querySelectorAll(".choices-wrapper > div");
-    choiceBoxes.forEach((choiceBox) =>
-        choiceBox.classList.remove("choice--show"),
+function closeChoicesWrapper() {
+    const choiceBoxes = document.querySelectorAll(".choices-wrapper > div"); // select every choiceBox
+    choiceBoxes.forEach(
+        (choiceBox) => choiceBox.classList.remove("choice--show"), // trigger hiding animation
     );
-    // changeSceneObjectsClickability(true);
     setTimeout(() => {
-        choicesWrapper.classList.remove("choices-wrapper--show");
-        choicesWrapper.textContent = "";
+        // after the hiding animation,
+        choicesWrapper.classList.remove("choices-wrapper--show"); // remove choicesWrapper visibility
+        choicesWrapper.textContent = ""; // remove every choiceBox
     }, 400);
 }
 
 export function handleChoice(choices, isInsideOfDialogue) {
     choices.forEach((choice) => {
-        const choiceDiv = document.createElement("div");
+        const choiceDiv = document.createElement("div"); // create a choiceBox
         choiceDiv.classList.add("choice");
 
-        const choiceBg = document.createElement("img");
+        const choiceBg = document.createElement("img"); // create a background for the choiceBox
         choiceBg.src = "/assets/images/menus/choices/choice-box.png";
         choiceBg.draggable = false;
 
-        const choiceText = document.createElement("p");
+        const choiceText = document.createElement("p"); // create and add choice's text
         choiceText.textContent = choice.name;
 
         choiceDiv.addEventListener("click", () => {
-            closeChoicesWrapper();
-            if (choice.consequences.length === 0) {
-                // if no consequence
-                backdrop.classList.remove("backdrop--show"); //
+            // on choice selection,
+            closeChoicesWrapper(); // hide the choices
+            if (!choice.consequences || choice.consequences?.length === 0) {
+                // if no consequences,
+
+                backdrop.classList.remove("backdrop--show"); // simply remove the backdrop, which lets the player continue the game
             } else {
-                handleConsequences(choice.consequences);
+                choice.consequences.forEach((consequence) => {
+                    const eventInfos = {
+                        event: consequence,
+                    };
+                    handleEventType(eventInfos);
+                });
             }
         });
 
@@ -72,20 +60,19 @@ export function handleChoice(choices, isInsideOfDialogue) {
         choicesWrapper.append(choiceDiv);
     });
 
-    if (isInsideOfDialogue) {
-        closeDialogue(true);
-        // changeSceneObjectsClickability(false);
+    const showChoices = () => {
+        choicesWrapper.classList.add("choices-wrapper--show");
+        const choiceBoxes = document.querySelectorAll(".choices-wrapper > div");
+        choiceBoxes.forEach((choiceBox) =>
+            choiceBox.classList.add("choice--show"),
+        );
+    };
 
-        setTimeout(() => {
-            choicesWrapper.classList.add("choices-wrapper--show");
-            const choiceBoxes = document.querySelectorAll(
-                ".choices-wrapper > div",
-            );
-            choiceBoxes.forEach((choiceBox) =>
-                choiceBox.classList.add("choice--show"),
-            );
-        }, 300);
+    if (isInsideOfDialogue) {
+        // if in a dialogue (which already shows the backdrop), wait for the closing animation of the dialogue to finish before showing the choices
+        setTimeout(showChoices, 300);
     } else {
-        // to be determined
+        backdrop.classList.add("backdrop--show"); // show the backdrop (since it's not shown up yet)
+        setTimeout(showChoices, 50);
     }
 }

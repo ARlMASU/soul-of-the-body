@@ -7,7 +7,7 @@ import { initModalHandler } from "../modules/modal-handler";
 import {
     handleOptionsMenuRangeValueDisplay,
     handleOptionsMenuLanguageSelection,
-} from "../modules/menus-handler";
+} from "../modules/modal-menus-handler";
 
 // from utils.js
 window.addEventListener("resize", () => resizeApp(container, app)); // invokes resizeApp() everytime we resize the window

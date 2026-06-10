@@ -13,8 +13,7 @@
             "dialogueVersion": "wally.png"
         },
         {
-            "name": "Narrator",
-            "dialogueVersion": ""
+            "name": "Narrator"
         }
     ],
 
@@ -109,12 +108,37 @@
     "story": [
         {
             "dialogueId": 0,
-            "characters": ["Narrator"],
+            "characters": ["Narrator", "You"],
             "textBoxes": [
                 {
                     "characterSpeaking": 0,
                     "expression": "",
-                    "lines": ["A boat."]
+                    "lines": ["The boat that brought you on this island."]
+                },
+                {
+                    "characterSpeaking": 0,
+                    "expression": "",
+                    "lines": ["LITTLE!!!"]
+                },
+                {
+                    "characterSpeaking": 1,
+                    "expression": "",
+                    "lines": ["I ain't little."]
+                },
+                {
+                    "eventType": "choice",
+                    "choices": [
+                        {
+                            "name": "Hop on the boat.",
+                            "consequences": [
+                                {
+                                    "eventType": "endingTrigger",
+                                    "ending": "Leave the island with the boat."
+                                }
+                            ]
+                        },
+                        { "name": "Stay on the island." }
+                    ]
                 }
             ]
         }

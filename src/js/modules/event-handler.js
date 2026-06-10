@@ -2,6 +2,8 @@
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 
+import { handlePlayerAction } from "./data-handler";
+
 import { handleDialogue } from "./dialogue-handler";
 
 import { handleChoice } from "./choice-handler";
@@ -16,6 +18,10 @@ export function handleEventType(eventInfo) {
     switch (eventInfo.event.eventType) {
         case "dialogue":
             handleDialogue(eventInfo.event.dialogueId);
+            break;
+
+        case "playerAction":
+            handlePlayerAction(eventInfo.event);
             break;
 
         case "fight":

@@ -18,7 +18,7 @@ import { getData, setDefaultData, clearDatas } from "./modules/data-handler";
 
 import { resizeApp, makeImagesUndraggable } from "./modules/utils";
 
-import { initMenusHandler } from "./modules/menus-handler";
+import { initMenusHandler } from "./modules/modal-menus-handler";
 
 import { handleScene } from "./modules/scene-handler";
 

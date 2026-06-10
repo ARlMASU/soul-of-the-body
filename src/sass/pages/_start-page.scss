@@ -33,33 +33,40 @@ body.start-page {
                 position: absolute;
                 top: 140px;
                 left: 50%;
+                width: 100%;
                 transform: translateX(-50%);
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: center;
                 text-align: center;
                 gap: 2px;
+
                 a {
                     cursor: pointer;
+                    width: 100%;
 
                     &:hover {
                         p {
                             color: black;
                             background-color: white;
+                            filter: drop-shadow(
+                                0 0 4px rgba(255, 255, 255, 0.25)
+                            );
                         }
                     }
                     &:active {
                         p {
                             color: white;
                             background-color: black;
+                            filter: none;
                         }
                     }
 
                     p {
                         padding: 0 6px 1px 6px;
                         transition:
-                            color 0.125s ease,
-                            background-color 0.125s ease;
+                            color 0.0625s ease,
+                            background-color 0.0625s ease;
                     }
                 }
             }
