@@ -113,7 +113,7 @@ function typeWriter(completeText) {
         showNextCharacter;
     };
 
-    handleDisplayText();
+    handleDisplayText(); // initial invoke
 }
 
 function closeDialogue(transitionToChoice) {
@@ -126,12 +126,11 @@ function closeDialogue(transitionToChoice) {
     setTimeout(() => {
         if (!transitionToChoice) {
             backdrop.classList.remove("backdrop--show");
+            menus.classList.remove("menus--overlay-showed");
         }
 
         dialogue.classList.remove("dialogue--right");
         dialogue.classList.remove("dialogue--left");
-
-        menus.classList.remove("menus--dialogue-showed");
 
         dialogue.classList.remove("dialogue--show");
         dialogue.classList.remove("dialogue--hide");
@@ -149,7 +148,7 @@ export function showDialogue(textBox) {
         // if the textBox contains an eventType (which means it's not lines of the dialogue)
         const eventInfo = {
             event: textBox,
-            isInsideOfDialogue: true,
+            overlayMode: true,
         };
 
         if (textBox.eventType === "choice") {
@@ -167,9 +166,9 @@ export function showDialogue(textBox) {
             dialogue.classList.remove("dialogue--no-speaker");
 
             if (textBoxIndex === 0) {
-                setTimeout(() => typeWriter(textBox.lines.join("\n")), 250); // wait for the end of the entry transition before showing the text
+                setTimeout(() => typeWriter(textBox.lines.join("")), 250); // wait for the end of the entry transition before showing the text
             } else {
-                typeWriter(textBox.lines.join("\n")); // merge the different lines with a linebreak between them
+                typeWriter(textBox.lines.join("")); // merge the different lines with a linebreak between them
             }
 
             const whichSpriteToShow = spritesForEachCharacter.find(
@@ -246,5 +245,5 @@ export function handleDialogue(dialogueId) {
     }
 
     dialogue.classList.add("dialogue--show");
-    menus.classList.add("menus--dialogue-showed");
+    menus.classList.add("menus--overlay-showed");
 }

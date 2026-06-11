@@ -116,29 +116,71 @@
                     "lines": ["The boat that brought you on this island."]
                 },
                 {
-                    "characterSpeaking": 0,
-                    "expression": "",
-                    "lines": ["LITTLE!!!"]
-                },
-                {
-                    "characterSpeaking": 1,
-                    "expression": "",
-                    "lines": ["I ain't little."]
-                },
-                {
                     "eventType": "choice",
+                    "title": "Hop on the boat ?",
                     "choices": [
                         {
                             "name": "Hop on the boat.",
                             "consequences": [
                                 {
-                                    "eventType": "endingTrigger",
-                                    "ending": "Leave the island with the boat."
+                                    "eventType": "choice",
+                                    "title": "Are you sure ?",
+                                    "choices": [
+                                        {
+                                            "name": "Yes.",
+                                            "consequences": [
+                                                {
+                                                    "eventType": "choice",
+                                                    "title": "Are you sure ?",
+                                                    "choices": [
+                                                        {
+                                                            "name": "Yes.",
+                                                            "consequences": [
+                                                                {
+                                                                    "eventType": "choice",
+                                                                    "title": "Are you sure ?",
+                                                                    "choices": [
+                                                                        {
+                                                                            "name": "Yes."
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "No."
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "No.",
+                                            "consequences": [
+                                                {
+                                                    "eventType": "dialogue",
+                                                    "dialogueId": 1
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         },
+                        { "name": "Stay on the island." },
                         { "name": "Stay on the island." }
                     ]
+                }
+            ]
+        },
+        {
+            "dialogueId": 1,
+            "characters": ["Narrator"],
+            "textBoxes": [
+                {
+                    "characterSpeaking": 0,
+                    "expression": "",
+                    "lines": ["What a choice! Good job!"]
                 }
             ]
         }

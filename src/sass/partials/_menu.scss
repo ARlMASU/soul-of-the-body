@@ -10,7 +10,7 @@
     opacity: 1;
     pointer-events: none;
 
-    &--dialogue-showed {
+    &--overlay-showed {
         @include hide;
 
         .move-button {

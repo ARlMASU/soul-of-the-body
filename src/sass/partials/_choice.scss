@@ -1,0 +1,82 @@
+@use "sass:math";
+
+@use "../utils/mixins" as *;
+
+.choices-wrapper {
+    @include abs(bottom);
+    @include hide;
+    @include flex(column, start, center);
+
+    width: 100%;
+    height: 156px;
+    z-index: 300;
+
+    gap: 4px;
+
+    &--show {
+        @include show;
+    }
+
+    &__title {
+        position: absolute;
+        left: 50%;
+        top: -20px;
+        width: 100%;
+        // font-family: "grapesoda";
+        font-size: 10px;
+        text-align: center;
+        letter-spacing: 2px;
+        filter: contrast(25%);
+        transform: translateX(-50%);
+        transition: all 0.25s ease;
+        opacity: 0.75;
+        &--show {
+            transform: translateX(-50%);
+            filter: contrast(100%);
+            letter-spacing: 0px;
+            opacity: 1;
+        }
+    }
+
+    .choice {
+        @include flex;
+
+        position: relative;
+        width: 144px;
+        height: 33px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &--show {
+            transform: scale(1) !important;
+            opacity: 1 !important;
+        }
+
+        &:hover {
+            scale: 1.025;
+        }
+
+        &:active {
+            scale: 0.95;
+            filter: invert(1);
+        }
+
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                transform: scale(math.random(25) * 0.01 + 0.65);
+                opacity: math.random(15) * 0.01 + 0.65;
+                transition-duration: math.random(2) * 0.1s + 0.2s;
+            }
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+}

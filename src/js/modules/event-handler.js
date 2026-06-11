@@ -28,7 +28,11 @@ export function handleEventType(eventInfo) {
             break;
 
         case "choice":
-            handleChoice(eventInfo.event.choices, eventInfo.isInsideOfDialogue);
+            handleChoice(
+                eventInfo.event.title,
+                eventInfo.event.choices,
+                eventInfo.overlayMode,
+            );
             break;
 
         case "addToInv":

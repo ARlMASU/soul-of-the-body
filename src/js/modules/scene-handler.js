@@ -48,8 +48,8 @@ function handleSceneObject(object, objectType) {
         objectImg.height = object.h;
         objectImg.alt = " ";
 
-        objectImg.style.border = "solid .5px red";
-        objectImg.style.background = "rgba(255, 0, 0, .25)";
+        // objectImg.style.border = "solid .5px red";
+        // objectImg.style.background = "rgba(255, 0, 0, .25)";
     } else {
         objectImg.src = `/assets/images/${objectType}s/${object.img}`;
         objectImg.alt = object.name;

@@ -11,6 +11,7 @@
 @use "partials/modal-menus/inv";
 @use "partials/modal-menus/options";
 
+@use "partials/choice";
 @use "partials/dialogue";
 @use "partials/menu";
 @use "partials/modal";
@@ -46,65 +47,6 @@ body.index {
                 }
             }
 
-            .choices-wrapper {
-                @include fill;
-                @include abs;
-                @include flex;
-                @include hide;
-
-                z-index: 300;
-
-                gap: 4px;
-
-                &--show {
-                    @include show;
-                }
-
-                .choice {
-                    @include flex;
-
-                    position: relative;
-                    width: 144px;
-                    height: 33px;
-                    cursor: pointer;
-                    transition:
-                        transform 0.4s ease,
-                        scale 0.2s ease,
-                        filter 0.2s ease;
-
-                    &--show {
-                        transform: translateX(0%) !important;
-                    }
-
-                    &:hover {
-                        scale: 1.025;
-                    }
-
-                    &:active {
-                        scale: 0.95;
-                        filter: invert(1);
-                    }
-
-                    img {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                    }
-
-                    p {
-                        text-align: center;
-                    }
-
-                    &:nth-child(even) {
-                        transform: translateX(-150%);
-                    }
-
-                    &:nth-child(odd) {
-                        transform: translateX(150%);
-                    }
-                }
-            }
-
             .scene-transition-blind {
                 @include fill;
                 @include hide;
@@ -128,9 +70,9 @@ body.index {
                 z-index: 10000;
                 gap: 2px;
 
-                display: flex;
-                flex-flow: column;
-                // display: none;
+                // display: flex;
+                // flex-flow: column;
+                display: none;
 
                 button {
                     width: fit-content;
