@@ -83,7 +83,7 @@ function handleSceneObject(object, objectType) {
 function handleMoveArrow(moveArrow) {
     const moveArrowImg = document.createElement("img");
     moveArrowImg.classList.add("move-arrow");
-    moveArrowImg.src = `../static/assets/images/icons/move-arrows/arrow-${moveArrow.shape}.webp`;
+    moveArrowImg.src = `/assets/images/ui/move/move-arrows/arrow-${moveArrow.shape}.webp`;
     moveArrowImg.draggable = false;
 
     if (moveArrow.shape === "default-bottom") {
