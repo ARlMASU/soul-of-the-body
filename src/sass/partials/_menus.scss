@@ -23,6 +23,26 @@
         top: 3px;
         right: 3px;
         pointer-events: auto;
+
+        &:active {
+            img {
+                filter: none;
+                transform: translateY(1px);
+                scale: 1;
+            }
+        }
+
+        &--ctrl {
+            img {
+                animation: ctrlClicked 0.2s steps(1) forwards;
+            }
+        }
+
+        img {
+            transition: none;
+            filter: drop-shadow(0 1px 0 var(--color-1));
+            scale: 1;
+        }
     }
 
     .menu-bar {

@@ -22,7 +22,7 @@ import {
 
 import { getData, setData } from "./data-handler";
 
-import { showLocationName } from "./utils";
+import { showLocationName } from "./ui-handler";
 
 import { handleEventType } from "./event-handler";
 

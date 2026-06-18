@@ -63,9 +63,6 @@ export function handleChoice(title, choices, overlayMode) {
                             consequence.eventType === "choice"
                         ) {
                             eventInfos.overlayMode = true;
-                            console.log(
-                                "overlayMode = true, eventType = dialogue || choice",
-                            );
                         } else {
                             backdrop.classList.remove("backdrop--show");
                             menus.classList.remove("menus--overlay-showed");

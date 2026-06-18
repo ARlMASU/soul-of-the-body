@@ -10,9 +10,9 @@ import { sceneItems } from "./dom";
 
 import { getData, setData } from "./data-handler";
 
-import { alertMessageShow } from "./utils";
+import { alertMessageShow } from "./ui-handler";
 
-import { handleInvMenuItemsDisplay } from "./modal-menus-handler";
+import { handleInvMenuItemsDisplay } from "./ui-handler";
 
 //=============//
 //  FUNCTIONS  //

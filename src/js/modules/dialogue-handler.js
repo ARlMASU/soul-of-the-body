@@ -39,7 +39,7 @@ let numberOfTextBoxes;
 
 let typing = false;
 let skipDialogue = false;
-let recentlyClicked = false;
+let clickCooldown = false;
 
 const charactersToCompare = [".", ";", "!", "?"];
 
@@ -144,7 +144,7 @@ function closeDialogue(transitionToChoice) {
 }
 
 export function showDialogue(textBox) {
-    if (textBox && textBox?.eventType) {
+    if (textBox?.eventType) {
         // if the textBox contains an eventType (which means it's not lines of the dialogue)
         const eventInfo = {
             event: textBox,
@@ -166,9 +166,9 @@ export function showDialogue(textBox) {
             dialogue.classList.remove("dialogue--no-speaker");
 
             if (textBoxIndex === 0) {
-                setTimeout(() => typeWriter(textBox.lines.join("")), 250); // wait for the end of the entry transition before showing the text
+                setTimeout(() => typeWriter(textBox.lines.join("\n")), 250); // wait for the end of the entry transition before showing the text
             } else {
-                typeWriter(textBox.lines.join("")); // merge the different lines with a linebreak between them
+                typeWriter(textBox.lines.join("\n")); // merge the different lines with a linebreak between them
             }
 
             const whichSpriteToShow = spritesForEachCharacter.find(
@@ -177,7 +177,7 @@ export function showDialogue(textBox) {
                     currentCharacters[textBox.characterSpeaking], // return the name of the character speaking
             );
 
-            if (whichSpriteToShow && whichSpriteToShow?.dialogueVersion) {
+            if (whichSpriteToShow?.dialogueVersion) {
                 // if we found a match for the character AND this character has a sprite,
                 dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichSpriteToShow.dialogueVersion}`; // show it
 
@@ -205,14 +205,14 @@ export function showDialogue(textBox) {
 const onDialogueClick = () => {
     if (typing === true) {
         skipDialogue = true;
-    } else if (recentlyClicked === false) {
+    } else if (clickCooldown === false) {
         showDialogue(currentTextBoxes[textBoxIndex]);
     }
 
-    recentlyClicked = true;
+    clickCooldown = true;
 
     setTimeout(() => {
-        recentlyClicked = false;
+        clickCooldown = false;
     }, 300);
 };
 

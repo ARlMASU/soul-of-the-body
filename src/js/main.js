@@ -18,7 +18,7 @@ import { getData, setDefaultData, clearDatas } from "./modules/data-handler";
 
 import { resizeApp, makeImagesUndraggable } from "./modules/utils";
 
-import { initMenusHandler } from "./modules/modal-menus-handler";
+import { initMenusHandler } from "./modules/ui-handler";
 
 import { handleScene } from "./modules/scene-handler";
 
@@ -57,7 +57,7 @@ defaultDatas.forEach((defaultData) => {
 
 handleScene(getData("currentSceneId"));
 
-// from menusHandler
+// from menus-handler
 initMenusHandler();
 
 // from modal-handler

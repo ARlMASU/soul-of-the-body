@@ -10,6 +10,10 @@
         flex-flow: column nowrap;
         gap: 6px;
 
+        h1 {
+            filter: drop-shadow(0 1px 0 var(--color-4));
+        }
+
         &__range {
             @include flex(row, start);
 
@@ -67,6 +71,14 @@
                         no-repeat center;
                     border-radius: 0;
                     border: none;
+                }
+
+                &:hover {
+                    cursor: grab;
+                }
+
+                &:active {
+                    cursor: grabbing;
                 }
             }
         }

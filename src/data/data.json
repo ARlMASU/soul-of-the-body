@@ -113,7 +113,12 @@
                 {
                     "characterSpeaking": 0,
                     "expression": "",
-                    "lines": ["The boat that brought you on this island."]
+                    "lines": [
+                        "The boat that brought you on this island.",
+                        "Another line.",
+                        "Another other line.",
+                        "HOP ON THE BOAT."
+                    ]
                 },
                 {
                     "eventType": "choice",
@@ -190,7 +195,7 @@
         "inventory": [
             {
                 "name": "Owly's postcard",
-                "img": "owly-s-postcard.png"
+                "img": "owly-s-postcard.webp"
             },
             {
                 "name": "Empty"

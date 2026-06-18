@@ -66,3 +66,21 @@
         pointer-events: none;
     }
 }
+
+@keyframes ctrlClicked {
+    from {
+        filter: drop-shadow(0 1px 0 var(--color-1));
+        scale: 1;
+    }
+    25% {
+        filter: none;
+        transform: translateY(1px);
+    }
+    90% {
+        filter: none;
+        transform: translateY(1px);
+    }
+    to {
+        filter: drop-shadow(0 1px 0 var(--color-1));
+    }
+}

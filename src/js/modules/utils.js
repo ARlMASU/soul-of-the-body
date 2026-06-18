@@ -1,14 +1,3 @@
-//============================//
-//  HTML DOM ELEMENTS IMPORT  //
-//============================//
-
-import {
-    alertMessage,
-    alertMessageText,
-    locationNameWrapper,
-    locationNameText,
-} from "./dom";
-
 //=============//
 //  FUNCTIONS  //
 //=============//
@@ -50,32 +39,6 @@ export function makeImagesUndraggable() {
 
 export function isEven(number) {
     return number % 2 === 0; // if the rest of the number is 0, returns true, which means it's even, otherwise, returns false, which means it's odd
-}
-
-export function alertMessageShow(text) {
-    alertMessageText.textContent = text;
-
-    alertMessage.classList.remove("alert-message--hide");
-    alertMessage.classList.add("alert-message--show");
-    setTimeout(() => {
-        alertMessage.classList.add("alert-message--hide");
-        alertMessage.classList.remove("alert-message--show");
-    }, 2000);
-}
-
-export function showLocationName(locationName) {
-    locationNameWrapper.classList.remove("scene__location-name--show"); // removes the class before re-adding it to retriger the animation
-    locationNameWrapper.offsetWidth; // forces reflow of DOM on the locationNameWrapper element, which forces the stop of the animation
-
-    locationNameText.textContent = locationName;
-    locationNameWrapper.classList.add("scene__location-name--show");
-    locationNameWrapper.addEventListener(
-        "animationend",
-        () => {
-            locationNameWrapper.classList.remove("scene__location-name--show");
-        },
-        { once: true }, // after the first trigger of the listener, removes the listener automatically
-    );
 }
 
 export function changeSceneObjectsClickability(state) {
