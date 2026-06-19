@@ -33,13 +33,13 @@
             "x": 0,
             "y": 0,
             "onClick": {
-                "eventType": "dialogue",
-                "dialogueId": 0
+                "eventType": "dialog",
+                "dialogId": 0
             }
         }
     },
     {
-        "dialogueId": 0,
+        "dialogId": 0,
         "characters": ["", ""],
         "textBoxes": [
             {
@@ -50,7 +50,7 @@
         ]
     },
     {
-        "dialogueId": 0,
+        "dialogId": 0,
         "characters": ["", ""],
         "textBoxes": [
             {
@@ -70,8 +70,8 @@
                                 "name": ""
                             },
                             {
-                                "consequenceType": "dialogue",
-                                "dialogueId": 0
+                                "consequenceType": "dialog",
+                                "dialogId": 0
                             }
                         ]
                     },

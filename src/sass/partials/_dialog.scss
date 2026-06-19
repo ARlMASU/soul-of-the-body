@@ -1,6 +1,6 @@
 @use "../utils/mixins" as *;
 
-.dialogue {
+.dialog {
     @include abs;
     @include fill;
     @include hide;
@@ -12,7 +12,7 @@
         opacity: 1;
         pointer-events: auto;
 
-        .dialogue {
+        .dialog {
             &__content {
                 transform: translateY(0%);
             }
@@ -28,7 +28,7 @@
         opacity: 1;
         pointer-events: none;
 
-        .dialogue {
+        .dialog {
             &__content {
                 transform: translateY(100%);
             }
@@ -40,7 +40,7 @@
     }
 
     &--left {
-        .dialogue {
+        .dialog {
             &__character-img {
                 left: 0;
                 right: auto;
@@ -61,7 +61,7 @@
     }
 
     &--right {
-        .dialogue {
+        .dialog {
             &__character-img {
                 right: 0;
                 left: auto;
@@ -82,7 +82,7 @@
     }
 
     &--no-speaker {
-        .dialogue {
+        .dialog {
             &__content {
                 &__box {
                     opacity: 0;

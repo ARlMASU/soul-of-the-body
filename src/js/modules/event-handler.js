@@ -2,9 +2,9 @@
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 
-import { handlePlayerAction } from "./data-handler";
+import { handlePlayerAction, handleEnding } from "./data-handler";
 
-import { handleDialogue } from "./dialogue-handler";
+import { handledialog } from "./dialog-handler";
 
 import { handleChoice } from "./choice-handler";
 
@@ -16,8 +16,8 @@ import { addToInv } from "./add-to-inv";
 
 export function handleEventType(eventInfo) {
     switch (eventInfo.event.eventType) {
-        case "dialogue":
-            handleDialogue(eventInfo.event.dialogueId);
+        case "dialog":
+            handledialog(eventInfo.event.dialogId);
             break;
 
         case "playerAction":
@@ -36,7 +36,11 @@ export function handleEventType(eventInfo) {
             break;
 
         case "addToInv":
-            addToInv(eventInfo.object, eventInfo.objectImg);
+            addToInv(eventInfo.object, eventInfo.objectBox);
+            break;
+
+        case "ending":
+            handleEnding(eventInfo.event);
             break;
 
         default:

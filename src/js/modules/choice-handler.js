@@ -8,7 +8,7 @@ import { backdrop, choicesWrapper, menus } from "./dom";
 //  EXTERNAL FUNCTIONS IMPORT  //
 //=============================//
 
-import { handleDialogue } from "./dialogue-handler";
+import { handledialog } from "./dialog-handler";
 import { handleEventType } from "./event-handler";
 
 //=============//
@@ -59,10 +59,10 @@ export function handleChoice(title, choices, overlayMode) {
                         };
 
                         if (
-                            consequence.eventType === "dialogue" ||
+                            consequence.eventType === "dialog" ||
                             consequence.eventType === "choice"
                         ) {
-                            eventInfos.overlayMode = true;
+                            eventInfos.overlayMode = true; // adds the overlayMode key-value pair
                         } else {
                             backdrop.classList.remove("backdrop--show");
                             menus.classList.remove("menus--overlay-showed");
@@ -93,7 +93,7 @@ export function handleChoice(title, choices, overlayMode) {
     titleElement.textContent = title;
 
     if (overlayMode) {
-        // if "in a dialogue" (which already shows the backdrop), wait for the closing animation of the dialogue to finish before showing the choices
+        // if "in a dialog" (which already shows the backdrop), wait for the closing animation of the dialog to finish before showing the choices
         setTimeout(() => {
             createChoices();
             choicesWrapper.append(titleElement);

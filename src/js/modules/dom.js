@@ -9,10 +9,10 @@ export const sceneTransitionBlind   = document.querySelector(".scene-transition-
 
 export const backdrop               = document.querySelector(".backdrop");
 
-export const dialogue               = document.querySelector(".dialogue");
-export const dialogueCharacterImg   = document.querySelector(".dialogue__character-img",);
-export const dialogueName           = document.querySelector(".dialogue__content__name");
-export const dialogueTextContent    = document.querySelector(".dialogue__content__text-content",);
+export const dialog               = document.querySelector(".dialog");
+export const dialogCharacterImg   = document.querySelector(".dialog__character-img",);
+export const dialogName           = document.querySelector(".dialog__content__name");
+export const dialogTextContent    = document.querySelector(".dialog__content__text-content",);
 
 export const menus                  = document.querySelector(".menus");
 

@@ -10,10 +10,10 @@ import data from "../../data/data";
 
 import {
     backdrop,
-    dialogue,
-    dialogueCharacterImg,
-    dialogueName,
-    dialogueTextContent,
+    dialog,
+    dialogCharacterImg,
+    dialogName,
+    dialogTextContent,
     menus,
 } from "./dom";
 
@@ -38,7 +38,7 @@ let currentCharacters = [];
 let numberOfTextBoxes;
 
 let typing = false;
-let skipDialogue = false;
+let skipdialog = false;
 let clickCooldown = false;
 
 const charactersToCompare = [".", ";", "!", "?"];
@@ -58,7 +58,7 @@ function typeWriter(completeText) {
     let showNextCharacter;
 
     typing = false;
-    skipDialogue = false;
+    skipdialog = false;
 
     const checkCharacter = (character) => {
         return charactersToCompare.includes(character);
@@ -76,7 +76,7 @@ function typeWriter(completeText) {
         nextCharacter = completeText.charAt(displayTextCount + 1);
 
         displayTextCount++;
-        dialogueTextContent.textContent = displayText;
+        dialogTextContent.textContent = displayText;
 
         if (currentCharacter === ",") {
             setShowNextCharacter(175);
@@ -98,14 +98,14 @@ function typeWriter(completeText) {
             typing = true;
         }
 
-        if (skipDialogue === true) {
+        if (skipdialog === true) {
             clearTimeout(showNextCharacter);
             displayTextCount = completeText.length + 1;
 
-            skipDialogue = false;
+            skipdialog = false;
             showNextCharacter = setTimeout(() => {
                 displayText = completeText;
-                dialogueTextContent.textContent = displayText;
+                dialogTextContent.textContent = displayText;
                 typing = false;
             }, 0);
         }
@@ -116,12 +116,12 @@ function typeWriter(completeText) {
     handleDisplayText(); // initial invoke
 }
 
-function closeDialogue(transitionToChoice) {
-    dialogue.removeEventListener("click", onDialogueClick);
-    backdrop.removeEventListener("click", onDialogueClick);
-    window.removeEventListener("keydown", onDialogueKeyPress);
+function closedialog(transitionToChoice) {
+    dialog.removeEventListener("click", ondialogClick);
+    backdrop.removeEventListener("click", ondialogClick);
+    window.removeEventListener("keydown", ondialogKeyPress);
 
-    dialogue.classList.add("dialogue--hide");
+    dialog.classList.add("dialog--hide");
 
     setTimeout(() => {
         if (!transitionToChoice) {
@@ -129,23 +129,23 @@ function closeDialogue(transitionToChoice) {
             menus.classList.remove("menus--overlay-showed");
         }
 
-        dialogue.classList.remove("dialogue--right");
-        dialogue.classList.remove("dialogue--left");
+        dialog.classList.remove("dialog--right");
+        dialog.classList.remove("dialog--left");
 
-        dialogue.classList.remove("dialogue--show");
-        dialogue.classList.remove("dialogue--hide");
+        dialog.classList.remove("dialog--show");
+        dialog.classList.remove("dialog--hide");
 
-        dialogueTextContent.textContent = "";
-        dialogueName.textContent = "";
-        dialogueCharacterImg.src = "";
+        dialogTextContent.textContent = "";
+        dialogName.textContent = "";
+        dialogCharacterImg.src = "";
 
         textBoxIndex = 0;
     }, 300);
 }
 
-export function showDialogue(textBox) {
+export function showdialog(textBox) {
     if (textBox?.eventType) {
-        // if the textBox contains an eventType (which means it's not lines of the dialogue)
+        // if the textBox contains an eventType (which means it's not lines of the dialog)
         const eventInfo = {
             event: textBox,
             overlayMode: true,
@@ -153,17 +153,17 @@ export function showDialogue(textBox) {
 
         if (textBox.eventType === "choice") {
             // if it's a choice,
-            closeDialogue(true); // close the dialogue without removing the backdrop (to transition smoothly into the choice selection screen)
+            closedialog(true); // close the dialog without removing the backdrop (to transition smoothly into the choice selection screen)
         }
 
         handleEventType(eventInfo);
     } else {
         if (textBoxIndex > numberOfTextBoxes - 1) {
-            // if we've reached the end of the dialogue,
-            closeDialogue(false);
+            // if we've reached the end of the dialog,
+            closedialog(false);
         } else {
-            dialogueCharacterImg.src = ""; // reset character's image/sprite
-            dialogue.classList.remove("dialogue--no-speaker");
+            dialogCharacterImg.src = ""; // reset character's image/sprite
+            dialog.classList.remove("dialog--no-speaker");
 
             if (textBoxIndex === 0) {
                 setTimeout(() => typeWriter(textBox.lines.join("\n")), 250); // wait for the end of the entry transition before showing the text
@@ -177,24 +177,24 @@ export function showDialogue(textBox) {
                     currentCharacters[textBox.characterSpeaking], // return the name of the character speaking
             );
 
-            if (whichSpriteToShow?.dialogueVersion) {
+            if (whichSpriteToShow?.dialogVersion) {
                 // if we found a match for the character AND this character has a sprite,
-                dialogueCharacterImg.src = `/assets/images/characters/dialogue-versions/${whichSpriteToShow.dialogueVersion}`; // show it
+                dialogCharacterImg.src = `/assets/images/characters/dialog-versions/${whichSpriteToShow.dialogVersion}`; // show it
 
-                dialogueName.textContent =
+                dialogName.textContent =
                     currentCharacters[textBox.characterSpeaking]; // return the name of the character speaking
 
-                // dialogue direction
+                // dialog direction
                 if (isEven(textBox.characterSpeaking) === true) {
-                    dialogue.classList.remove("dialogue--right");
-                    dialogue.classList.add("dialogue--left");
+                    dialog.classList.remove("dialog--right");
+                    dialog.classList.add("dialog--left");
                 } else {
-                    dialogue.classList.remove("dialogue--left");
-                    dialogue.classList.add("dialogue--right");
+                    dialog.classList.remove("dialog--left");
+                    dialog.classList.add("dialog--right");
                 }
             } else {
-                // change the dialogue box to the no-speaker version
-                dialogue.classList.add("dialogue--no-speaker");
+                // change the dialog box to the no-speaker version
+                dialog.classList.add("dialog--no-speaker");
             }
 
             textBoxIndex++;
@@ -202,11 +202,11 @@ export function showDialogue(textBox) {
     }
 }
 
-const onDialogueClick = () => {
+const ondialogClick = () => {
     if (typing === true) {
-        skipDialogue = true;
+        skipdialog = true;
     } else if (clickCooldown === false) {
-        showDialogue(currentTextBoxes[textBoxIndex]);
+        showdialog(currentTextBoxes[textBoxIndex]);
     }
 
     clickCooldown = true;
@@ -216,34 +216,34 @@ const onDialogueClick = () => {
     }, 300);
 };
 
-const onDialogueKeyPress = (event) => {
+const ondialogKeyPress = (event) => {
     if (event.code === "Enter" || event.code === "Space") {
-        onDialogueClick();
+        ondialogClick();
     }
 };
 
-export function handleDialogue(dialogueId) {
-    const selectedDialogue = story[dialogueId];
+export function handledialog(dialogId) {
+    const selecteddialog = story[dialogId];
 
     textBoxIndex = 0;
-    currentTextBoxes = selectedDialogue.textBoxes;
-    currentCharacters = selectedDialogue.characters;
-    numberOfTextBoxes = selectedDialogue.textBoxes.length;
+    currentTextBoxes = selecteddialog.textBoxes;
+    currentCharacters = selecteddialog.characters;
+    numberOfTextBoxes = selecteddialog.textBoxes.length;
 
-    showDialogue(currentTextBoxes[textBoxIndex]);
+    showdialog(currentTextBoxes[textBoxIndex]);
 
-    dialogue.removeEventListener("click", onDialogueClick);
-    backdrop.removeEventListener("click", onDialogueClick);
-    window.removeEventListener("keydown", onDialogueKeyPress);
+    dialog.removeEventListener("click", ondialogClick);
+    backdrop.removeEventListener("click", ondialogClick);
+    window.removeEventListener("keydown", ondialogKeyPress);
 
-    dialogue.addEventListener("click", onDialogueClick);
-    backdrop.addEventListener("click", onDialogueClick);
-    window.addEventListener("keydown", onDialogueKeyPress);
+    dialog.addEventListener("click", ondialogClick);
+    backdrop.addEventListener("click", ondialogClick);
+    window.addEventListener("keydown", ondialogKeyPress);
 
     if (!backdrop.classList.contains("backdrop--show")) {
         backdrop.classList.add("backdrop--show");
     }
 
-    dialogue.classList.add("dialogue--show");
+    dialog.classList.add("dialog--show");
     menus.classList.add("menus--overlay-showed");
 }

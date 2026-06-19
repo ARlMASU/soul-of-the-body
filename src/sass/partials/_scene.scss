@@ -50,8 +50,9 @@
 
             position: absolute;
             cursor: pointer;
-            filter: invert(0);
+            filter: invert(1);
             scale: 1;
+
             transition:
                 opacity 0.2s ease,
                 filter 0.1s ease,
@@ -64,6 +65,8 @@
 
             &--show {
                 @include show;
+
+                filter: invert(0);
             }
         }
     }

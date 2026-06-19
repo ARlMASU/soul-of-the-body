@@ -33,6 +33,7 @@ const defaultDatas = [
     ["tasks", data.default.tasks],
     ["findings", data.default.findings],
     ["playerActions", []],
+    ["endings", []],
     ["objectsToHide", []],
     ["currentSceneId", 0],
     ["username", null],

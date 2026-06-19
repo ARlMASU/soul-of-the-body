@@ -155,7 +155,7 @@ function handleMoveButtonClick() {
             setTimeout(() => {
                 moveButton.classList.remove("move-button--ctrl");
                 clickCooldown = false;
-            }, 450);
+            }, 225);
         }
     });
 }
@@ -220,9 +220,9 @@ export function initMenusHandler() {
     disableCheckingAbilityOfDiaryMenuCheckboxes();
     handleOptionsMenuRangeValueDisplay();
     handleOptionsMenuLanguageSelection();
-    handleInvMenuItemsDisplay(getData("inventory"));
     handleTasksAndFindingsDisplay(getData("tasks"), getData("findings"));
     handleMoveButtonClick();
+    handleInvMenuItemsDisplay(getData("inventory"));
 }
 
 export function alertMessageShow(text) {

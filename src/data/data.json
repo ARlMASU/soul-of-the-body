@@ -2,15 +2,15 @@
     "spritesForEachCharacter": [
         {
             "name": "You",
-            "dialogueVersion": "dark-smiling-guy.png"
+            "dialogVersion": "dark-smiling-guy.png"
         },
         {
             "name": "Smiling guy",
-            "dialogueVersion": "smiling-guy.png"
+            "dialogVersion": "smiling-guy.png"
         },
         {
             "name": "Wally",
-            "dialogueVersion": "wally.png"
+            "dialogVersion": "wally.png"
         },
         {
             "name": "Narrator"
@@ -34,8 +34,8 @@
                     "w": 41,
                     "h": 47,
                     "onClick": {
-                        "eventType": "dialogue",
-                        "dialogueId": 0
+                        "eventType": "dialog",
+                        "dialogId": 0
                     }
                 }
             ],
@@ -107,7 +107,7 @@
 
     "story": [
         {
-            "dialogueId": 0,
+            "dialogId": 0,
             "characters": ["Narrator", "You"],
             "textBoxes": [
                 {
@@ -115,9 +115,9 @@
                     "expression": "",
                     "lines": [
                         "The boat that brought you on this island.",
-                        "Another line.",
+                        "THERE. ARE. STOPS. AT. EACH. PUNCTUATION. MARK.",
                         "Another other line.",
-                        "HOP ON THE BOAT."
+                        "HOP ON THE BOAT!"
                     ]
                 },
                 {
@@ -136,17 +136,24 @@
                                             "consequences": [
                                                 {
                                                     "eventType": "choice",
-                                                    "title": "Are you sure ?",
+                                                    "title": "Really ?",
                                                     "choices": [
                                                         {
                                                             "name": "Yes.",
                                                             "consequences": [
                                                                 {
                                                                     "eventType": "choice",
-                                                                    "title": "Are you sure ?",
+                                                                    "title": "No turning back.",
                                                                     "choices": [
                                                                         {
-                                                                            "name": "Yes."
+                                                                            "name": "Okay.",
+                                                                            "consequences": [
+                                                                                {
+                                                                                    "eventType": "ending",
+                                                                                    "endingId": 0,
+                                                                                    "endingName": "Hopped on the boat"
+                                                                                }
+                                                                            ]
                                                                         }
                                                                     ]
                                                                 }
@@ -163,8 +170,8 @@
                                             "name": "No.",
                                             "consequences": [
                                                 {
-                                                    "eventType": "dialogue",
-                                                    "dialogueId": 1
+                                                    "eventType": "dialog",
+                                                    "dialogId": 1
                                                 }
                                             ]
                                         }
@@ -179,7 +186,7 @@
             ]
         },
         {
-            "dialogueId": 1,
+            "dialogId": 1,
             "characters": ["Narrator"],
             "textBoxes": [
                 {

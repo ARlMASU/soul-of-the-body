@@ -37,34 +37,35 @@ const scenes = data.scenes;
 //=============//
 
 function handleSceneObject(object, objectType) {
-    const objectImg = document.createElement("img");
-
-    objectImg.classList.add(`${objectType}`);
-
-    objectImg.draggable = false;
-
+    let objectBox;
     if (!object.img) {
-        objectImg.width = object.w;
-        objectImg.height = object.h;
-        objectImg.alt = " ";
+        objectBox = document.createElement("div");
+        objectBox.style.width = `${object.w}px`;
+        objectBox.style.height = `${object.h}px`;
 
-        // objectImg.style.border = "solid .5px red";
-        // objectImg.style.background = "rgba(255, 0, 0, .25)";
+        // objectBox.style.border = "solid .5px red";
+        // objectBox.style.background = "rgba(255, 0, 0, .25)";
     } else {
-        objectImg.src = `/assets/images/${objectType}s/${object.img}`;
-        objectImg.alt = object.name;
+        objectBox = document.createElement("img");
+
+        objectBox.src = `/assets/images/${objectType}s/${object.img}`;
+        objectBox.alt = object.name;
     }
 
-    objectImg.title = object.name;
-    objectImg.style.top = `${object.y}px`;
-    objectImg.style.left = `${object.x}px`;
+    objectBox.classList.add(`${objectType}`);
+
+    objectBox.draggable = false;
+
+    objectBox.title = object.name;
+    objectBox.style.top = `${object.y}px`;
+    objectBox.style.left = `${object.x}px`;
 
     object.onClick &&
-        objectImg.addEventListener("click", () => {
+        objectBox.addEventListener("click", () => {
             const eventInfo = {
                 event: object.onClick,
                 object: object,
-                objectImg: objectImg,
+                objectBox: objectBox,
             };
             handleEventType(eventInfo);
         });
@@ -72,9 +73,9 @@ function handleSceneObject(object, objectType) {
     if (getData("objectsToHide").includes(object.name)) {
         return;
     } else if (objectType === "item") {
-        sceneItems.append(objectImg);
+        sceneItems.append(objectBox);
     } else if (objectType === "character") {
-        sceneCharacters.append(objectImg);
+        sceneCharacters.append(objectBox);
     } else {
         console.log("Error, unvalid objectType.");
     }

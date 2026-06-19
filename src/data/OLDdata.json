@@ -4,15 +4,15 @@
     "spritesForEachCharacter": [
         {
             "name": "You",
-            "dialogueVersion": "dark-smiling-guy.png"
+            "dialogVersion": "dark-smiling-guy.png"
         },
         {
             "name": "Smiling guy",
-            "dialogueVersion": "smiling-guy.png"
+            "dialogVersion": "smiling-guy.png"
         },
         {
             "name": "Wally",
-            "dialogueVersion": "wally.png"
+            "dialogVersion": "wally.png"
         }
     ],
 
@@ -43,8 +43,8 @@
                     "x": 200,
                     "y": 87,
                     "onClick": {
-                        "eventType": "dialogue",
-                        "dialogueId": 1
+                        "eventType": "dialog",
+                        "dialogId": 1
                     }
                 }
             ],
@@ -78,8 +78,8 @@
                     "x": 75,
                     "y": 55,
                     "onClick": {
-                        "eventType": "dialogue",
-                        "dialogueId": 0
+                        "eventType": "dialog",
+                        "dialogId": 0
                     }
                 }
             ],
@@ -129,7 +129,7 @@
 
     "story": [
         {
-            "dialogueId": 0,
+            "dialogId": 0,
             "characters": ["You", "Wally"],
             "textBoxes": [
                 {
@@ -169,8 +169,8 @@
                                     "name": "Told Wally that he was super cool."
                                 },
                                 {
-                                    "eventType": "dialogue",
-                                    "dialogueId": 2
+                                    "eventType": "dialog",
+                                    "dialogId": 2
                                 }
                             ]
                         },
@@ -193,7 +193,7 @@
         },
 
         {
-            "dialogueId": 1,
+            "dialogId": 1,
             "characters": ["You", "Smiling guy"],
             "textBoxes": [
                 {
@@ -237,7 +237,7 @@
         },
 
         {
-            "dialogueId": 2,
+            "dialogId": 2,
             "characters": ["You", "Wally"],
             "textBoxes": [
                 {

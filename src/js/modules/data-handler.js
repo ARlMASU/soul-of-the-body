@@ -21,18 +21,31 @@ export function clearDatas() {
     location.reload();
 }
 
-export function handlePlayerAction(event) {
+export function handlePlayerAction(newPlayerAction) {
     const playerActions = getData("playerActions"); // import the current playerActions
     if (
         // if the current playerActions don't contain the new playerAction
         !playerActions?.some(
             (playerAction) =>
-                playerAction.playerActionId === event.playerActionId,
+                playerAction.playerActionId === newPlayerAction.playerActionId,
         )
     ) {
         // then,
-        delete event.eventType; // remove the unnecessary eventType key-value pair
-        playerActions.push(event); // add the new and cleaned playerAction to the playerActions
+        delete newPlayerAction.eventType; // remove the unnecessary eventType key-value pair
+        playerActions.push(newPlayerAction); // add the new and cleaned playerAction to the playerActions
         setData("playerActions", playerActions); // save the updated playerActions in localStorage
+    }
+}
+
+export function handleEnding(newEnding) {
+    const endings = getData("endings");
+
+    if (
+        // if the current endings don't contain the new ending
+        !endings?.some((ending) => ending.endingId === newEnding.endingId)
+    ) {
+        delete newEnding.eventType; // remove the unnecessary eventType key-value pair
+        endings.push(newEnding); // add the new and cleaned ending to the endings
+        setData("endings", endings); // save the updated endings in localStorage
     }
 }

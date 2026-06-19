@@ -30,7 +30,7 @@
                 @include flex;
 
                 background: url("../../static/assets/images/ui/modal-menus/inventory/inv-box.webp");
-                cursor: crosshair;
+                cursor: pointer;
 
                 &:hover {
                     transform: translateY(-1px);

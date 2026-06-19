@@ -136,5 +136,17 @@
                 }
             }
         }
+
+        &__quit {
+            margin-top: auto;
+            cursor: default;
+            a {
+                cursor: pointer;
+                width: fit-content;
+                p {
+                    width: fit-content;
+                }
+            }
+        }
     }
 }
