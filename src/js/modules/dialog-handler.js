@@ -29,7 +29,7 @@ import { handleEventType } from "./event-handler";
 //  VARIABLES  //
 //=============//
 
-const story = data.story;
+const dialogs = data.dialogs;
 const spritesForEachCharacter = data.spritesForEachCharacter;
 
 let textBoxIndex = 0;
@@ -38,7 +38,7 @@ let currentCharacters = [];
 let numberOfTextBoxes;
 
 let typing = false;
-let skipdialog = false;
+let skipDialog = false;
 let clickCooldown = false;
 
 const charactersToCompare = [".", ";", "!", "?"];
@@ -58,7 +58,7 @@ function typeWriter(completeText) {
     let showNextCharacter;
 
     typing = false;
-    skipdialog = false;
+    skipDialog = false;
 
     const checkCharacter = (character) => {
         return charactersToCompare.includes(character);
@@ -98,11 +98,11 @@ function typeWriter(completeText) {
             typing = true;
         }
 
-        if (skipdialog === true) {
+        if (skipDialog === true) {
             clearTimeout(showNextCharacter);
             displayTextCount = completeText.length + 1;
 
-            skipdialog = false;
+            skipDialog = false;
             showNextCharacter = setTimeout(() => {
                 displayText = completeText;
                 dialogTextContent.textContent = displayText;
@@ -116,10 +116,14 @@ function typeWriter(completeText) {
     handleDisplayText(); // initial invoke
 }
 
-function closedialog(transitionToChoice) {
-    dialog.removeEventListener("click", ondialogClick);
-    backdrop.removeEventListener("click", ondialogClick);
-    window.removeEventListener("keydown", ondialogKeyPress);
+function displayTypeWriterInDialog(text) {
+    typeWriter(text);
+}
+
+function closeDialog(transitionToChoice) {
+    dialog.removeEventListener("click", onDialogClick);
+    backdrop.removeEventListener("click", onDialogClick);
+    window.removeEventListener("keydown", onDialogKeyPress);
 
     dialog.classList.add("dialog--hide");
 
@@ -143,7 +147,7 @@ function closedialog(transitionToChoice) {
     }, 300);
 }
 
-export function showdialog(textBox) {
+export function showDialog(textBox) {
     if (textBox?.eventType) {
         // if the textBox contains an eventType (which means it's not lines of the dialog)
         const eventInfo = {
@@ -153,14 +157,14 @@ export function showdialog(textBox) {
 
         if (textBox.eventType === "choice") {
             // if it's a choice,
-            closedialog(true); // close the dialog without removing the backdrop (to transition smoothly into the choice selection screen)
+            closeDialog(true); // close the dialog without removing the backdrop (to transition smoothly into the choice selection screen)
         }
 
         handleEventType(eventInfo);
     } else {
         if (textBoxIndex > numberOfTextBoxes - 1) {
             // if we've reached the end of the dialog,
-            closedialog(false);
+            closeDialog(false);
         } else {
             dialogCharacterImg.src = ""; // reset character's image/sprite
             dialog.classList.remove("dialog--no-speaker");
@@ -174,7 +178,7 @@ export function showdialog(textBox) {
             const whichSpriteToShow = spritesForEachCharacter.find(
                 (character) =>
                     character.name ===
-                    currentCharacters[textBox.characterSpeaking], // return the name of the character speaking
+                    currentCharacters[textBox.characterSpeaking] // return the name of the character speaking
             );
 
             if (whichSpriteToShow?.dialogVersion) {
@@ -202,11 +206,11 @@ export function showdialog(textBox) {
     }
 }
 
-const ondialogClick = () => {
+const onDialogClick = () => {
     if (typing === true) {
-        skipdialog = true;
+        skipDialog = true;
     } else if (clickCooldown === false) {
-        showdialog(currentTextBoxes[textBoxIndex]);
+        showDialog(currentTextBoxes[textBoxIndex]);
     }
 
     clickCooldown = true;
@@ -216,29 +220,29 @@ const ondialogClick = () => {
     }, 300);
 };
 
-const ondialogKeyPress = (event) => {
+const onDialogKeyPress = (event) => {
     if (event.code === "Enter" || event.code === "Space") {
-        ondialogClick();
+        onDialogClick();
     }
 };
 
-export function handledialog(dialogId) {
-    const selecteddialog = story[dialogId];
+export function handleDialog(dialogId) {
+    const selectedDialog = dialogs[dialogId];
 
     textBoxIndex = 0;
-    currentTextBoxes = selecteddialog.textBoxes;
-    currentCharacters = selecteddialog.characters;
-    numberOfTextBoxes = selecteddialog.textBoxes.length;
+    currentTextBoxes = selectedDialog.textBoxes;
+    currentCharacters = selectedDialog.characters;
+    numberOfTextBoxes = selectedDialog.textBoxes.length;
 
-    showdialog(currentTextBoxes[textBoxIndex]);
+    showDialog(currentTextBoxes[textBoxIndex]);
 
-    dialog.removeEventListener("click", ondialogClick);
-    backdrop.removeEventListener("click", ondialogClick);
-    window.removeEventListener("keydown", ondialogKeyPress);
+    dialog.removeEventListener("click", onDialogClick);
+    backdrop.removeEventListener("click", onDialogClick);
+    window.removeEventListener("keydown", onDialogKeyPress);
 
-    dialog.addEventListener("click", ondialogClick);
-    backdrop.addEventListener("click", ondialogClick);
-    window.addEventListener("keydown", ondialogKeyPress);
+    dialog.addEventListener("click", onDialogClick);
+    backdrop.addEventListener("click", onDialogClick);
+    window.addEventListener("keydown", onDialogKeyPress);
 
     if (!backdrop.classList.contains("backdrop--show")) {
         backdrop.classList.add("backdrop--show");

@@ -1,0 +1,21 @@
+@use "../utils/mixins" as *;
+
+.text-screen {
+    @include fill;
+    @include abs;
+    @include hide;
+    @include flex;
+
+    gap: 8px;
+
+    background: var(--color-0);
+
+    &--show {
+        @include show;
+    }
+
+    &__text {
+        text-align: center;
+        padding: 0 24px;
+    }
+}

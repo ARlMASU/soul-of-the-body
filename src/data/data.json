@@ -105,7 +105,7 @@
         }
     ],
 
-    "story": [
+    "dialogs": [
         {
             "dialogId": 0,
             "characters": ["Narrator", "You"],
@@ -194,6 +194,19 @@
                     "expression": "",
                     "lines": ["What a choice! Good job!"]
                 }
+            ]
+        }
+    ],
+
+    "endingScenes": [
+        {
+            "endingId": 0,
+            "textScreen": [
+                ["Hello.", "Hi.", "Okay."],
+                [
+                    "This is a very vey long text about nothing but text.",
+                    "Still not long enough it seems."
+                ]
             ]
         }
     ],

@@ -27,7 +27,7 @@ export function handlePlayerAction(newPlayerAction) {
         // if the current playerActions don't contain the new playerAction
         !playerActions?.some(
             (playerAction) =>
-                playerAction.playerActionId === newPlayerAction.playerActionId,
+                playerAction.playerActionId === newPlayerAction.playerActionId
         )
     ) {
         // then,

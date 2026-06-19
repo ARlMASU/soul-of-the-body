@@ -4,7 +4,7 @@
 
 import { handlePlayerAction, handleEnding } from "./data-handler";
 
-import { handledialog } from "./dialog-handler";
+import { handleDialog } from "./dialog-handler";
 
 import { handleChoice } from "./choice-handler";
 
@@ -17,7 +17,7 @@ import { addToInv } from "./add-to-inv";
 export function handleEventType(eventInfo) {
     switch (eventInfo.event.eventType) {
         case "dialog":
-            handledialog(eventInfo.event.dialogId);
+            handleDialog(eventInfo.event.dialogId);
             break;
 
         case "playerAction":
@@ -31,7 +31,7 @@ export function handleEventType(eventInfo) {
             handleChoice(
                 eventInfo.event.title,
                 eventInfo.event.choices,
-                eventInfo.overlayMode,
+                eventInfo.overlayMode
             );
             break;
 
